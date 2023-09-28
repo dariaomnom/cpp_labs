@@ -2,15 +2,14 @@
 #include <iostream>
 using namespace std;
 
-PlayerController::PlayerController(Player& player, int startX, int startY) {
-    this->player = player;
-    if (startX >= 0) {
-        this->x = startX;
+PlayerController::PlayerController(Player& player, int start_x, int start_y) : player(player) {
+    if (start_x >= 0) {
+        this->x = start_x;
     } else {
         this->x = 0;
     }
-    if (startY >= 0) {
-        this->y = startY;
+    if (start_y >= 0) {
+        this->y = start_y;
     } else {
         this->y = 0;
     }

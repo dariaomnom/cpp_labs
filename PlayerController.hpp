@@ -11,7 +11,7 @@ private:
     int x, y;
 
 public:
-    explicit PlayerController(Player& player, int startX = 0, int startY = 0);
+    explicit PlayerController(Player& player, int start_x = 0, int start_y = 0);
 
     void move(Direction direction);
 

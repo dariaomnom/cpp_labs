@@ -8,5 +8,4 @@ add_executable(Labs
         Player.hpp
         Player.cpp
         PlayerController.hpp
-        PlayerController.cpp
-        )
+        PlayerController.cpp)
