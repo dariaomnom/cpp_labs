@@ -11,10 +11,11 @@ private:
     int x, y;
 
 public:
-    explicit PlayerController(Player& player, int start_x = 0, int start_y = 0);
+    explicit PlayerController(Player& player);
 
     void move(Direction direction);
 
     void printPosition();
+    void printLives();
 };
 #endif

@@ -2,17 +2,9 @@
 #include <iostream>
 using namespace std;
 
-PlayerController::PlayerController(Player& player, int start_x, int start_y) : player(player) {
-    if (start_x >= 0) {
-        this->x = start_x;
-    } else {
-        this->x = 0;
-    }
-    if (start_y >= 0) {
-        this->y = start_y;
-    } else {
-        this->y = 0;
-    }
+PlayerController::PlayerController(Player& player) : player(player) {
+    this->x = 0;
+    this->y = 0;
 }
 
 void PlayerController::move(Direction direction) {

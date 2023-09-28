@@ -13,16 +13,22 @@ public:
 
     void addPoints(int points);
 
-    void addLife(int lives);
-    void loseLife();
+    void addLives(int lives = 1);
+    void loseLives(int lives = 1);
 
     void levelUp();
 
-    void setLife(int lives);
+    void setLives(int lives);
     void setPoints(int points);
+    void setLevel(int level);
 
     int getLives();
     int getPoints();
     int getLevel();
+
+    void printPoints();
+    void printLives();
+    void printLevel();
+    void printStats();
 };
 #endif
