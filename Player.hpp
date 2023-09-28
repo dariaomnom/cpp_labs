@@ -13,14 +13,12 @@ public:
 
     void addPoints(int points);
 
-    void loseLife();
-
     void addLife(int lives);
+    void loseLife();
 
     void levelUp();
 
     void setLife(int lives);
-
     void setPoints(int points);
 
     int getLives();
