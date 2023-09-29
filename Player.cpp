@@ -5,11 +5,7 @@ using namespace std;
 Player::Player(int lives, int points) {
     setLives(lives);
     setPoints(points);
-    this->level = 1;
-}
-
-void Player::addPoints(int points) {
-    setPoints(getPoints() + points);
+    setLevel(1);
 }
 
 void Player::addLives(int lives) {
@@ -20,8 +16,12 @@ void Player::loseLives(int lives) {
     setLives(getLives() - lives);
 }
 
+void Player::addPoints(int points) {
+    setPoints(getPoints() + points);
+}
+
 void Player::levelUp() {
-    this->level += 1;
+    setLevel(getLevel()+1);
 }
 
 void Player::setLives(int lives) {

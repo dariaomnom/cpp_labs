@@ -9,16 +9,16 @@ PlayerController::PlayerController(Player& player) : player(player) {
 
 void PlayerController::move(Direction direction) {
     switch (direction) {
-        case UP:
+        case Direction::UP:
             y-1 >= 0 ? y-- : y = 0;
             break;
-        case DOWN:
+        case Direction::DOWN:
             y++;
             break;
-        case LEFT:
+        case Direction::LEFT:
             x-1 >= 0 ? x-- : x = 0;
             break;
-        case RIGHT:
+        case Direction::RIGHT:
             x++;
             break;
     }

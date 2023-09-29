@@ -3,7 +3,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-enum Direction { UP, DOWN, LEFT, RIGHT };
+enum class Direction { UP, DOWN, LEFT, RIGHT };
 
 class PlayerController {
 private:
