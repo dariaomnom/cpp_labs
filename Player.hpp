@@ -11,18 +11,24 @@ public:
 
     ~Player() = default;
 
-    void addPoints(int points);
+    void addLives(int lives = 1);
+    void loseLives(int lives = 1);
 
-    void addLife(int lives);
-    void loseLife();
+    void addPoints(int points);
 
     void levelUp();
 
-    void setLife(int lives);
+    void setLives(int lives);
     void setPoints(int points);
+    void setLevel(int level);
 
     int getLives();
     int getPoints();
     int getLevel();
+
+    void printLives();
+    void printPoints();
+    void printLevel();
+    void printStats();
 };
 #endif

@@ -2,32 +2,23 @@
 #include <iostream>
 using namespace std;
 
-PlayerController::PlayerController(Player& player, int startX, int startY) {
-    this->player = player;
-    if (startX >= 0) {
-        this->x = startX;
-    } else {
-        this->x = 0;
-    }
-    if (startY >= 0) {
-        this->y = startY;
-    } else {
-        this->y = 0;
-    }
+PlayerController::PlayerController(Player& player) : player(player) {
+    this->x = 0;
+    this->y = 0;
 }
 
 void PlayerController::move(Direction direction) {
     switch (direction) {
-        case UP:
+        case Direction::UP:
             y-1 >= 0 ? y-- : y = 0;
             break;
-        case DOWN:
+        case Direction::DOWN:
             y++;
             break;
-        case LEFT:
+        case Direction::LEFT:
             x-1 >= 0 ? x-- : x = 0;
             break;
-        case RIGHT:
+        case Direction::RIGHT:
             x++;
             break;
     }

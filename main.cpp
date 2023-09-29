@@ -1,36 +1,24 @@
-#include <iostream>
 #include "Player.hpp"
 #include "PlayerController.hpp"
+#include <iostream>
 using namespace std;
 
 int main() {
     Player player(10, 0);
-    PlayerController controller(player, 0, 0);
+    player.printStats();
 
-    controller.move(DOWN);
-    controller.move(DOWN);
-    controller.move(RIGHT);
+    PlayerController controller(player);
+    controller.move(Direction::DOWN);
+    controller.move(Direction::DOWN);
+    controller.move(Direction::RIGHT);
     controller.printPosition();
 
-    player.addPoints(50);
-    std::cout << "Player has " << player.getPoints() << " points\n";
-    player.addPoints(50);
-    std::cout << "Player has " << player.getLevel() << " level\n";
-    std::cout << "Player has " << player.getPoints() << " points\n";
-    player.addPoints(60);
-    std::cout << "Player has " << player.getPoints() << " points\n";
-    std::cout << "Player has " << player.getLevel() << " level\n";
-    player.addPoints(50);
-    std::cout << "Player has " << player.getLevel() << " level\n";
-    std::cout << "Player has " << player.getPoints() << " points\n";
+    player.addPoints(230);
 
+    player.loseLives();
+    player.loseLives(3);
 
-    player.loseLife();
-    player.loseLife();
-    player.addLife(3);
-//    std::cout << "Player has " << player.getLives() << " lives\n";
-
-
+    player.printStats();
 
     return 0;
 }
