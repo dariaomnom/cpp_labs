@@ -33,22 +33,16 @@ void Player::setLives(int lives) {
 }
 
 void Player::setPoints(int points) {
-    if (points < 0) this->points = 0;
-    else if (points > 1000) this->points = 1000;
-    else this->points = points;
-//    if (this->points >= 100) {
-//        levelUp();
-//        this->points = 0;
-//    }
-
-//    if (points >= 100) {
-//        setLevel(this->points / 100 + 1);
-//    }
+    if (points < 0) {
+        this->points = 0;
+    }
+    else if (points > 1000) {
+        this->points = 1000;
+    }
+    else {
+        this->points = points;
+    }
     setLevel(this->points / 100 + 1);
-
-//    if (this->points >= (this->level)*100) {
-//        levelUp();
-//    }
 }
 
 void Player::setLevel(int level) {
@@ -61,12 +55,12 @@ int Player::getLives() { return this->lives; }
 int Player::getPoints() { return this->points; }
 int Player::getLevel() { return this->level; }
 
-void Player::printPoints() {
-    cout << "Player has " << this->getPoints() << " points\n";
-}
-
 void Player::printLives() {
     cout << "Player has " << this->getLives() << " lives\n";
+}
+
+void Player::printPoints() {
+    cout << "Player has " << this->getPoints() << " points\n";
 }
 
 void Player::printLevel() {

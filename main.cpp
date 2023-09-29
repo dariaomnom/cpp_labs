@@ -1,6 +1,6 @@
-#include <iostream>
 #include "Player.hpp"
 #include "PlayerController.hpp"
+#include <iostream>
 using namespace std;
 
 int main() {
