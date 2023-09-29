@@ -26,9 +26,6 @@ public:
     int getPoints();
     int getLevel();
 
-    void printLives();
-    void printPoints();
-    void printLevel();
     void printStats();
 };
 #endif

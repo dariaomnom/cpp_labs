@@ -55,18 +55,6 @@ int Player::getLives() { return this->lives; }
 int Player::getPoints() { return this->points; }
 int Player::getLevel() { return this->level; }
 
-void Player::printLives() {
-    cout << "Player has " << this->getLives() << " lives\n";
-}
-
-void Player::printPoints() {
-    cout << "Player has " << this->getPoints() << " points\n";
-}
-
-void Player::printLevel() {
-    cout << "Player has level " << this->getLevel() << "\n";
-}
-
 void Player::printStats() {
     cout << "Lives: " << this->getLives() << "\n";
     cout << "Points: " << this->getPoints() << "\n";
