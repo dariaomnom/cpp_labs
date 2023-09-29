@@ -11,10 +11,10 @@ public:
 
     ~Player() = default;
 
-    void addPoints(int points);
-
     void addLives(int lives = 1);
     void loseLives(int lives = 1);
+
+    void addPoints(int points);
 
     void levelUp();
 
