@@ -22,9 +22,9 @@ public:
     void setPoints(int points);
     void setLevel(int level);
 
-    int getLives();
-    int getPoints();
-    int getLevel();
+    int getLives() const;
+    int getPoints() const;
+    int getLevel() const;
 
     void printStats();
 };

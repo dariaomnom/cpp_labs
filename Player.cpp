@@ -51,12 +51,12 @@ void Player::setLevel(int level) {
     }
 }
 
-int Player::getLives() { return this->lives; }
-int Player::getPoints() { return this->points; }
-int Player::getLevel() { return this->level; }
+int Player::getLives() const { return lives; }
+int Player::getPoints() const { return points; }
+int Player::getLevel() const { return level; }
 
 void Player::printStats() {
-    cout << "Lives: " << this->getLives() << "\n";
-    cout << "Points: " << this->getPoints() << "\n";
-    cout << "Level: " << this->getLevel() << "\n";
+    cout << "Lives: " << getLives() << "\n";
+    cout << "Points: " << getPoints() << "\n";
+    cout << "Level: " << getLevel() << "\n";
 }

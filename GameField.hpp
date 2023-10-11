@@ -1,8 +1,21 @@
-//
-// Created by Дарья Газукина on 11.10.2023.
-//
+#ifndef GAMEFIELD_HPP
+#define GAMEFIELD_HPP
+#include <iostream>
+using namespace std;
+#include "Cell.hpp"
 
-#ifndef LABS_GAMEFIELD_HPP
-#define LABS_GAMEFIELD_HPP
-
-#endif //LABS_GAMEFIELD_HPP
+class GameField {
+private:
+    int width, height;
+    Cell** cells;
+    pair<int, int> entry, exit;
+public:
+    GameField(int width = 10, int height = 10);
+    ~GameField();
+    Cell& getCell(int x, int y);
+    void setEntry(int x, int y);
+    void setExit(int x, int y);
+    pair<int, int> getEntry() const;
+    pair<int, int> getExit() const;
+};
+#endif
