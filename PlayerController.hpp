@@ -16,6 +16,5 @@ public:
     void move(Direction direction);
 
     void printPosition();
-    void printLives();
 };
 #endif

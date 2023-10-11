@@ -9,19 +9,19 @@ Player::Player(int lives, int points) {
 }
 
 void Player::addLives(int lives) {
-    setLives(getLives() + lives);
+    setLives(this->lives + lives);
 }
 
 void Player::loseLives(int lives) {
-    setLives(getLives() - lives);
+    setLives(this->lives - lives);
 }
 
 void Player::addPoints(int points) {
-    setPoints(getPoints() + points);
+    setPoints(this->points + points);
 }
 
 void Player::levelUp() {
-    setLevel(getLevel()+1);
+    setLevel(this->level + 1);
 }
 
 void Player::setLives(int lives) {
