@@ -19,5 +19,7 @@ public:
     void move(Direction direction);
 
     void printPosition();
+
+    void showField();
 };
 #endif

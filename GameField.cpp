@@ -30,3 +30,15 @@ void GameField::setExit(int x, int y) {
 }
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
+
+//void GameField::showField() {
+//    for (int i = 0; i < height; i++) {
+//        for (int j = 0; j < width; j++) {
+//            if (cells[i][j].isPassable())
+//                cout << "[ ]";
+//            else
+//                cout << "[#]";
+//        }
+//        cout << "\n";
+//    }
+//}

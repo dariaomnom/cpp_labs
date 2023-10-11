@@ -17,5 +17,7 @@ public:
     void setExit(int x, int y);
     pair<int, int> getEntry() const;
     pair<int, int> getExit() const;
+
+//    void showField();
 };
 #endif

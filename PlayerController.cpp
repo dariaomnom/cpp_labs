@@ -41,5 +41,21 @@ void PlayerController::move(Direction direction) {
 }
 
 void PlayerController::printPosition() {
-    std::cout << "Player is at (" << x << ", " << y << ")\n";
+    cout << "Player is at (" << x << ", " << y << ")\n";
+}
+
+void PlayerController::showField() {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (gameField.getCell(j, i).isPassable()) {
+                if (x == j && y == i)
+                    cout << "(T-T)";
+                else
+                    cout << " [ ] ";
+            } else {
+                cout << " [#] ";
+            }
+        }
+        cout << "\n";
+    }
 }
