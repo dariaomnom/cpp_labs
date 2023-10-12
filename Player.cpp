@@ -9,19 +9,19 @@ Player::Player(int lives, int points) {
 }
 
 void Player::addLives(int lives) {
-    setLives(getLives() + lives);
+    setLives(this->lives + lives);
 }
 
 void Player::loseLives(int lives) {
-    setLives(getLives() - lives);
+    setLives(this->lives - lives);
 }
 
 void Player::addPoints(int points) {
-    setPoints(getPoints() + points);
+    setPoints(this->points + points);
 }
 
 void Player::levelUp() {
-    setLevel(getLevel()+1);
+    setLevel(this->level + 1);
 }
 
 void Player::setLives(int lives) {
@@ -51,24 +51,13 @@ void Player::setLevel(int level) {
     }
 }
 
-int Player::getLives() { return this->lives; }
-int Player::getPoints() { return this->points; }
-int Player::getLevel() { return this->level; }
-
-void Player::printLives() {
-    cout << "Player has " << this->getLives() << " lives\n";
-}
-
-void Player::printPoints() {
-    cout << "Player has " << this->getPoints() << " points\n";
-}
-
-void Player::printLevel() {
-    cout << "Player has level " << this->getLevel() << "\n";
-}
+int Player::getLives() const { return lives; }
+int Player::getPoints() const { return points; }
+int Player::getLevel() const { return level; }
 
 void Player::printStats() {
-    cout << "Lives: " << this->getLives() << "\n";
-    cout << "Points: " << this->getPoints() << "\n";
-    cout << "Level: " << this->getLevel() << "\n";
+    cout << "STATS\n";
+    cout << "Lives: " << getLives() << "\n";
+    cout << "Points: " << getPoints() << "\n";
+    cout << "Level: " << getLevel() << "\n";
 }

@@ -1,24 +1,23 @@
 #include "Player.hpp"
 #include "PlayerController.hpp"
+#include "Cell.hpp"
+#include "GameField.hpp"
+
 #include <iostream>
 using namespace std;
 
 int main() {
-    Player player(10, 0);
-    player.printStats();
+    int field_width = 15; int field_height = 15;
 
-    PlayerController controller(player);
-    controller.move(Direction::DOWN);
-    controller.move(Direction::DOWN);
-    controller.move(Direction::RIGHT);
-    controller.printPosition();
+    Player player;
+    GameField field(field_width,field_height);
+    PlayerController controller(player, field);
 
-    player.addPoints(230);
+    field.randomCells(3);
+//    controller.startGame();
 
-    player.loseLives();
-    player.loseLives(3);
-
-    player.printStats();
+//    cout << field.getEntry().first << " " << field.getEntry().second << "\n";
+//    cout << field.getExit().first << " " << field.getExit().second << "\n";
 
     return 0;
 }
