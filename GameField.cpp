@@ -50,16 +50,6 @@ GameField::GameField (GameField&& other) {
     other.cells = nullptr;
 }
 
-//GameField::GameField (GameField&& other)
-//        : width(other.width)
-//        , height(other.height)
-//        , entry(std::move(other.entry))
-//        , exit(std::move(other.exit))
-//        , cells(other.cells)
-//{
-//    other.cells = nullptr;
-//}
-
 GameField::~GameField() {
     if (this->cells != nullptr) {
         for (int i = 0; i < height; ++i)
