@@ -4,7 +4,7 @@ class Cell {
 private:
     bool passable;
 public:
-    Cell(bool passable = true);
+    explicit Cell(bool passable = true);
     void setPassable(bool passable);
     bool isPassable() const;
 };

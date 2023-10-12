@@ -1,7 +1,13 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
 
-GameField::GameField(int width, int height) : width(width), height(height) {
+GameField::GameField(int width, int height) /*: width(width), height(height)*/ {
+    if (width > 3 && width < 101 && height > 3 && height < 101) {
+        this->width = width;
+        this->height = height;
+    } else {
+        throw out_of_range("Invalid size of game field");
+    }
     cells = new Cell*[height];
     for(int i = 0; i < height; ++i)
         cells[i] = new Cell[width];
@@ -30,6 +36,10 @@ void GameField::setExit(int x, int y) {
 }
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
+
+pair<int, int> GameField::getSize() const {
+    return make_pair(width, height);
+}
 
 //void GameField::showField() {
 //    for (int i = 0; i < height; i++) {

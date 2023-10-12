@@ -2,37 +2,19 @@
 #include <iostream>
 using namespace std;
 
-//PlayerController::PlayerController(Player& player) : player(player) {
-//    this->x = 0;
-//    this->y = 0;
-//}
 PlayerController::PlayerController(Player& player, GameField& gameField)
 : player(player), gameField(gameField) {
-    std::tie(x, y) = gameField.getEntry();
+    tie(x, y) = gameField.getEntry();
 }
 
 
 void PlayerController::move(Direction direction) {
-//    switch (direction) {
-//        case Direction::UP:
-//            y-1 >= 0 ? y-- : y = 0;
-//            break;
-//        case Direction::DOWN:
-//            y++;
-//            break;
-//        case Direction::LEFT:
-//            x-1 >= 0 ? x-- : x = 0;
-//            break;
-//        case Direction::RIGHT:
-//            x++;
-//            break;
-//    }
     int newX = this->x, newY = this->y;
     switch (direction) {
-        case Direction::UP:    newY--; break;
-        case Direction::DOWN:  newY++; break;
-        case Direction::LEFT:  newX--; break;
-        case Direction::RIGHT: newX++; break;
+        case Direction::UP:    newY-1 >= 0 ? newY-- : newY = 0; break;
+        case Direction::DOWN:  newY+1 < gameField.getSize().second ? newY++ : newY = gameField.getSize().second-1; break;
+        case Direction::LEFT:  newX-1 >= 0 ? newX-- : newX = 0; break;
+        case Direction::RIGHT: newX+1 < gameField.getSize().first ? newX++ : newX = gameField.getSize().first-1; break;
     }
     if (gameField.getCell(newX, newY).isPassable()) {
         x = newX;
@@ -45,8 +27,10 @@ void PlayerController::printPosition() {
 }
 
 void PlayerController::showField() {
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
+    int w = gameField.getSize().first;
+    int h = gameField.getSize().second;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
             if (gameField.getCell(j, i).isPassable()) {
                 if (x == j && y == i)
                     cout << "(T-T)";
