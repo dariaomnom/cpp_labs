@@ -16,8 +16,8 @@ int main() {
     field.randomCells(3);
 //    controller.startGame();
 
-    cout << field.getEntry().first << " " << field.getEntry().second << "\n";
-    cout << field.getExit().first << " " << field.getExit().second << "\n";
+//    cout << field.getEntry().first << " " << field.getEntry().second << "\n";
+//    cout << field.getExit().first << " " << field.getExit().second << "\n";
 
     return 0;
 }
