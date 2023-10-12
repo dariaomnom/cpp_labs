@@ -22,21 +22,8 @@ Cell& GameField::getCell(int x, int y) {
         return cells[y][x];
     throw out_of_range("Invalid cell coordinates");
 }
-//void GameField::setEntry(int x, int y) {
-//    if(x >= 0 && x < width && y >= 0 && y < height)
-//        entry = {x, y};
-//    else
-//        throw out_of_range("Invalid entry coordinates");
-//}
-//void GameField::setExit(int x, int y) {
-//    if(x >= 0 && x < width && y >= 0 && y < height)
-//        exit = {x, y};
-//    else
-//        throw out_of_range("Invalid exit coordinates");
-//}
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
-
 pair<int, int> GameField::getSize() const {
     return make_pair(width, height);
 }

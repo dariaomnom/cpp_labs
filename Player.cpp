@@ -56,6 +56,7 @@ int Player::getPoints() const { return points; }
 int Player::getLevel() const { return level; }
 
 void Player::printStats() {
+    cout << "STATS\n";
     cout << "Lives: " << getLives() << "\n";
     cout << "Points: " << getPoints() << "\n";
     cout << "Level: " << getLevel() << "\n";
