@@ -1,7 +1,7 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
 
-GameField::GameField(int width, int height) /*: width(width), height(height)*/ {
+GameField::GameField(int width, int height) {
     if (width > 3 && width < 101 && height > 3 && height < 101) {
         this->width = width;
         this->height = height;
@@ -22,33 +22,21 @@ Cell& GameField::getCell(int x, int y) {
         return cells[y][x];
     throw out_of_range("Invalid cell coordinates");
 }
-void GameField::setEntry(int x, int y) {
-    if(x >= 0 && x < width && y >= 0 && y < height)
-        entry = {x, y};
-    else
-        throw out_of_range("Invalid entry coordinates");
-}
-void GameField::setExit(int x, int y) {
-    if(x >= 0 && x < width && y >= 0 && y < height)
-        exit = {x, y};
-    else
-        throw out_of_range("Invalid exit coordinates");
-}
+//void GameField::setEntry(int x, int y) {
+//    if(x >= 0 && x < width && y >= 0 && y < height)
+//        entry = {x, y};
+//    else
+//        throw out_of_range("Invalid entry coordinates");
+//}
+//void GameField::setExit(int x, int y) {
+//    if(x >= 0 && x < width && y >= 0 && y < height)
+//        exit = {x, y};
+//    else
+//        throw out_of_range("Invalid exit coordinates");
+//}
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
 
 pair<int, int> GameField::getSize() const {
     return make_pair(width, height);
 }
-
-//void GameField::showField() {
-//    for (int i = 0; i < height; i++) {
-//        for (int j = 0; j < width; j++) {
-//            if (cells[i][j].isPassable())
-//                cout << "[ ]";
-//            else
-//                cout << "[#]";
-//        }
-//        cout << "\n";
-//    }
-//}
