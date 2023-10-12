@@ -17,5 +17,6 @@ public:
     void move(Direction direction);
     void printPosition();
     void showField();
+    void startGame();
 };
 #endif

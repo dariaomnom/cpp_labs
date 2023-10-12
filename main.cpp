@@ -20,31 +20,33 @@ int main() {
             home.getCell(x,y).setPassable(false);
     }
 
-    caron_steps.showField();
-    char dir;
-    while (dir != 'q') {
-        cin >> dir;
-        switch (dir) {
-            case 'w':
-                caron_steps.move(Direction::UP);
-                caron_steps.showField();
-                break;
-            case 's':
-                caron_steps.move(Direction::DOWN);
-                caron_steps.showField();
-                break;
-            case 'a':
-                caron_steps.move(Direction::LEFT);
-                caron_steps.showField();
-                break;
-            case 'd':
-                caron_steps.move(Direction::RIGHT);
-                caron_steps.showField();
-                break;
-            case 'p':
-                caron.printStats();
-                break;
-        }
-    }
+
+    caron_steps.startGame();
+//    caron_steps.showField();
+//    char dir;
+//    while (dir != 'q') {
+//        cin >> dir;
+//        switch (dir) {
+//            case 'w':
+//                caron_steps.move(Direction::UP);
+//                caron_steps.showField();
+//                break;
+//            case 's':
+//                caron_steps.move(Direction::DOWN);
+//                caron_steps.showField();
+//                break;
+//            case 'a':
+//                caron_steps.move(Direction::LEFT);
+//                caron_steps.showField();
+//                break;
+//            case 'd':
+//                caron_steps.move(Direction::RIGHT);
+//                caron_steps.showField();
+//                break;
+//            case 'p':
+//                caron.printStats();
+//                break;
+//        }
+//    }
     return 0;
 }

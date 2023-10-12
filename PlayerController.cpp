@@ -29,7 +29,6 @@ void PlayerController::printPosition() {
 void PlayerController::showField() {
     int w = gameField.getSize().first;
     int h = gameField.getSize().second;
-
     int x_start = 0;
     int y_start = 0;
     int x_end = 0;
@@ -64,44 +63,33 @@ void PlayerController::showField() {
         }
         cout << "\n";
     }
+}
 
-
-//
-//    if (w <= 10 && h <= 10) {
-//        for (int i = 0; i < h; i++) {
-//            for (int j = 0; j < w; j++) {
-//                if (gameField.getCell(j, i).isPassable()) {
-//                    if (x == j && y == i)
-//                        cout << termcolor::blue << "(T-T)" << termcolor::reset;
-//                    else
-//                        cout << "  .  ";
-//                } else {
-//                    cout << " [#] ";
-//                }
-//            }
-//            cout << "\n";
-//        }
-//    } else {
-//        int x_center = x;
-//        int y_center = y;
-//        if (x < 3) x_center = 3;
-//        if (y < 3) y_center = 3;
-//        if (x >= w-3) x_center = w-4;
-//        if (y >= h-3) y_center = h-4;
-//        for (int i = y_center-3; i <= y_center+3; i++) {
-//            for (int j = x_center-3; j <= x_center+3; j++) {
-//                if (i >= 0 && i < h && j >= 0 && j < w) {
-//                    if (gameField.getCell(j, i).isPassable()) {
-//                        if (x == j && y == i)
-//                            cout << termcolor::blue << "(T-T)" << termcolor::reset;
-//                        else
-//                            cout << "  .  ";
-//                    } else {
-//                        cout << " [#] ";
-//                    }
-//                }
-//            }
-//            cout << "\n";
-//        }
-//    }
+void PlayerController::startGame() {
+    this->showField();
+    char dir;
+    while (dir != 'q') {
+        cin >> dir;
+        switch (dir) {
+            case 'w':
+                this->move(Direction::UP);
+                this->showField();
+                break;
+            case 's':
+                this->move(Direction::DOWN);
+                this->showField();
+                break;
+            case 'a':
+                this->move(Direction::LEFT);
+                this->showField();
+                break;
+            case 'd':
+                this->move(Direction::RIGHT);
+                this->showField();
+                break;
+            case 'p':
+                player.printStats();
+                break;
+        }
+    }
 }
