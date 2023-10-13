@@ -68,7 +68,7 @@ void GameField::randomCells(int density) {
     int x = 0; int y = 0;
     for (int i = 0; i < (getSize().first * getSize().second / density); i++) {
         x = rand() % getSize().first; y = rand() % getSize().second;
-        if (x+y != 0)
+        if (x != getEntry().first && y != getEntry().second && x != getExit().first && y != getExit().second)
             getCell(x,y).setPassable(false);
     }
 }

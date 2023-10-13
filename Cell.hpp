@@ -1,13 +1,11 @@
-#ifndef LABS_CELL_HPP
-#define LABS_CELL_HPP
-#include <iostream>
+#ifndef CELL_HPP
+#define CELL_HPP
 class GameField;
 class Cell {
 private:
     bool passable;
-    std::pair<int,int> coords;
 public:
-    explicit Cell(bool passable = true, std::pair<int,int> coords = std::make_pair(-1,-1));
+    explicit Cell(bool passable = true);
     void setPassable(bool passable);
     bool isPassable() const;
     Cell& operator=(Cell other);
