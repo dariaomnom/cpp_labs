@@ -1,8 +1,9 @@
-#ifndef GAMEFIELD_HPP
-#define GAMEFIELD_HPP
 #include <iostream>
 using namespace std;
 #include "Cell.hpp"
+
+#ifndef GAMEFIELD_HPP
+#define GAMEFIELD_HPP
 
 class GameField {
 private:
@@ -19,5 +20,6 @@ public:
     pair<int, int> getEntry() const;
     pair<int, int> getExit() const;
     pair<int, int> getSize() const;
+    GameField& operator=(const GameField& other);
 };
 #endif

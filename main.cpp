@@ -2,7 +2,6 @@
 #include "PlayerController.hpp"
 #include "Cell.hpp"
 #include "GameField.hpp"
-
 #include <iostream>
 using namespace std;
 

@@ -78,3 +78,24 @@ pair<int, int> GameField::getExit() const { return exit; }
 pair<int, int> GameField::getSize() const {
     return make_pair(width, height);
 }
+
+GameField& GameField::operator=(const GameField& other) {
+    if (this != &other) {
+        for (int i = 0; i < height; i++) {
+            delete[] cells[i];
+        }
+        delete cells;
+        height = other.height;
+        width = other.width;
+        cells = new Cell* [height];
+        for (int i = 0; i < height; i++) {
+            cells[i] = new Cell[width];
+        }
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                cells[i][j] = other.cells[i][j];
+            }
+        }
+    }
+    return *this;
+}
