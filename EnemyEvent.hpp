@@ -1,12 +1,13 @@
+#ifndef LABS_ENEMYEVENT_HPP
+#define LABS_ENEMYEVENT_HPP
 
-#ifndef LABS_ENEMY_HPP
-#define LABS_ENEMY_HPP
+#include "PlayerEvent.hpp"
 
-#include "GameEvent.hpp"
-
-class EnemyEvent : public GameEvent {
+class EnemyEvent : public PlayerEvent {
 public:
-    void triggerEvent(Player& player) override;
+    explicit EnemyEvent(Player& player);
+    ~EnemyEvent() override = default;
+    void triggerEvent() override;
 };
 
 #endif

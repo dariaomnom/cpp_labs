@@ -1,6 +1,6 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
-#include "GameEvent.hpp"
+#include "PlayerEvent.hpp"
 
 using namespace std;
 #define MAX_SIZE 101

@@ -2,7 +2,7 @@
 #include "PlayerController.hpp"
 #include "Cell.hpp"
 #include "GameField.hpp"
-#include "GameEvent.hpp"
+#include "PlayerEvent.hpp"
 #include "GameFieldCreator.hpp"
 
 #include <iostream>

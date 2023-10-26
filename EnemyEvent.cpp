@@ -1,3 +1,5 @@
-//
-// Created by Дарья Газукина on 27.10.2023.
-//
+#include "EnemyEvent.hpp"
+
+void EnemyEvent::triggerEvent() {
+    player.loseLives();
+}

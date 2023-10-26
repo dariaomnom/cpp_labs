@@ -1,13 +1,10 @@
-#ifndef GAMEEVENT_HPP
-#define GAMEEVENT_HPP
+#ifndef LABS_GAMEEVENT_HPP
+#define LABS_GAMEEVENT_HPP
 
-class Player;
+class GameEvent{
 
-class GameEvent {
 public:
-//    explicit GameEvent(Player& player);
+    virtual void triggerEvent() = 0;
     virtual ~GameEvent() = default;
-    virtual void triggerEvent(Player& player) = 0;
 };
-
 #endif

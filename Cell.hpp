@@ -1,7 +1,8 @@
-#include "GameEvent.hpp"
-
 #ifndef CELL_HPP
 #define CELL_HPP
+
+#include "GameEvent.hpp"
+
 class GameField;
 class Cell {
 private:

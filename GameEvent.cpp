@@ -1,3 +1,3 @@
-#include "GameEvent.h"
-
-//GameEvent::GameEvent(Player& player) : player(player) {}
+//
+// Created by Дарья Газукина on 27.10.2023.
+//

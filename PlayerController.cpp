@@ -104,6 +104,6 @@ void PlayerController::startGame() {
 void PlayerController::checkForEvent() {
     GameEvent* event = gameField.getEvent(x, y);
     if (event) {
-        event->triggerEvent(player);
+        event->triggerEvent();
     }
 }
