@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "GameField.hpp"
+#include "GameEvent.hpp"
 
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
@@ -15,6 +16,7 @@ private:
 public:
     explicit PlayerController(Player& player, GameField& gameField);
     void move(Direction direction);
+    void checkForEvent();
     void printPosition();
     void showField();
     void startGame();

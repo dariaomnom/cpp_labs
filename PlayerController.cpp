@@ -1,10 +1,9 @@
 #include "PlayerController.hpp"
-//#include <iostream>
 using namespace std;
 #include "lib/termcolor.hpp"
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
-: player(player), gameField(gameField) {
+        : player(player), gameField(gameField) {
     tie(x, y) = gameField.getEntry();
 }
 
@@ -99,5 +98,12 @@ void PlayerController::startGame() {
                 player.printStats();
                 break;
         }
+    }
+}
+
+void PlayerController::checkForEvent() {
+    GameEvent* event = gameField.getEvent(x, y);
+    if (event) {
+        event->triggerEvent(player);
     }
 }

@@ -2,6 +2,9 @@
 #include "PlayerController.hpp"
 #include "Cell.hpp"
 #include "GameField.hpp"
+#include "GameEvent.hpp"
+#include "GameFieldCreator.hpp"
+
 #include <iostream>
 using namespace std;
 
@@ -15,7 +18,10 @@ int main() {
     cout << field.getEntry().first << " " << field.getEntry().second << " START\n";
     cout << field.getExit().first << " " << field.getExit().second << " FINISH\n";
 
-    field.randomCells(3);
+//    field.randomCells(3);
+    GameFieldCreator creator(field, player, controller);
+    creator.createField(2);
+
     controller.startGame();
 
     return 0;
