@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    int field_width = 4; int field_height = 4;
+    int field_width = 10; int field_height = 10;
 
     Player player;
     GameField field(field_width,field_height);
