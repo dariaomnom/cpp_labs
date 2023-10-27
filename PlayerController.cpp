@@ -127,19 +127,9 @@ void PlayerController::startGame() {
 }
 
 void PlayerController::checkForEvent() {
-//    GameEvent* event = gameField.getEvent(x, y); // old
-
-// my
     GameEvent* event = gameField.getCell(x,y).getEvent();
     if (event) {
         event->triggerEvent();
         gameField.getCell(x, y).setEvent(nullptr);
     }
-
-//    GameEvent* event = gameField.getCell(x, y).getEvent();
-//    auto *pl = dynamic_cast<PlayerEvent *> (event);
-//    if (pl){
-//        event->triggerEvent();
-//        gameField.getCell(x, y).setEvent(nullptr);
-//    }
 }

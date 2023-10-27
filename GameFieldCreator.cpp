@@ -8,22 +8,35 @@ void GameFieldCreator::createField(int level) {
     int points;
     int enemies;
     int position;
+    int lives;
 
     if (level == 1) {
         passable = 5;
         points = 3;
-        enemies = 5;
         position = 6;
+//        enemies = 5;
+        enemies = field.getSize().first * field.getSize().first / 10 - 1;
+        if (enemies == points || enemies == position) enemies += 1;
+        lives = enemies * 3;
+        if (lives == points || lives == position) lives += 1;
     } else if (level == 2) {
         passable = 3;
         points = 2;
-        enemies = 3;
         position = 5;
+//        enemies = 3;
+        enemies = field.getSize().first * field.getSize().first / 15 - 1;
+        if (enemies == points || enemies == position) enemies -= 1;
+        lives = enemies * 3;
+        if (lives == points || lives == position) lives += 1;
     } else {
         passable = 4;
         points = 3;
-        enemies = 4;
         position = 5;
+//        enemies = 3;
+        enemies = field.getSize().first * field.getSize().first / 10 - 2;
+        if (enemies == points || enemies == position) enemies -= 1;
+        lives = enemies * 3;
+        if (lives == points || lives == position) lives += 1;
     }
 
     int x = 0; int y = 0;
@@ -38,15 +51,13 @@ void GameFieldCreator::createField(int level) {
             if (!field.getCell(i,j).getEvent() && field.getCell(i,j).isPassable()) {
                 if (((j+1) * field.getSize().first + i + 1) % points == 0) {
                     field.getCell(i,j).setEvent(new PointsEvent(player));
-                    cout << "  " << i << " POINTS " << j << "    ";
                 } else if (((j+1) * field.getSize().first + i + 1) % enemies == 0) {
                     field.getCell(i,j).setEvent(new EnemyEvent(player));
-                    cout << i << " ENEMIES " << j << '\n';
-                } else if (((j+1) * field.getSize().first + i + 3) % position == 0) {
+                } else if (((j+1) * field.getSize().first + i + 1) % position == 0) {
                     field.getCell(i,j).setEvent(new PositionEvent(player, controller, field));
-                    cout << i << " TELEPORTS " << j << '\n';
+                } else if (((j+1) * field.getSize().first + i + 1) % lives == 0) {
+                    field.getCell(i,j).setEvent(new LivesEvent(player));
                 }
-                cout << '\n';
             }
         }
     }

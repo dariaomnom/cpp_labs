@@ -3,6 +3,7 @@
 #include "GameField.hpp"
 #include "EnemyEvent.hpp"
 #include "PointsEvent.hpp"
+#include "LivesEvent.hpp"
 #include "PositionEvent.hpp"
 
 #ifndef GAMEFIELDCREATOR_HPP

@@ -68,15 +68,6 @@ Cell& GameField::getCell(int x, int y) {
     throw out_of_range("Invalid cell coordinates");
 }
 
-//void GameField::randomCells(int density) {
-//    int x = 0; int y = 0;
-//    for (int i = 0; i < (getSize().first * getSize().second / density); i++) {
-//        x = rand() % getSize().first; y = rand() % getSize().second;
-//        if (x != getEntry().first && y != getEntry().second && x != getExit().first && y != getExit().second)
-//            getCell(x,y).setPassable(false);
-//    }
-//}
-
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
 pair<int, int> GameField::getSize() const {
@@ -101,11 +92,3 @@ GameField& GameField::operator=(const GameField& other) {
     }
     return *this;
 }
-
-//GameEvent* GameField::getEvent(int x, int y) {
-//    return events[x][y];
-//}
-//
-//void GameField::addEvent(int x, int y, GameEvent* event) {
-//    events[x][y] = event;
-//}
