@@ -2,6 +2,11 @@
 #define LABS_POSITIONEVENT_HPP
 
 #include "FieldEvent.hpp"
+#include "Player.hpp"
+#include "PlayerController.hpp"
+#include "GameEvent.hpp"
+#include "GameField.hpp"
+#include "Cell.hpp"
 
 class PositionEvent : public FieldEvent {
 public:

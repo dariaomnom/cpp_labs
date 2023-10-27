@@ -102,10 +102,10 @@ GameField& GameField::operator=(const GameField& other) {
     return *this;
 }
 
-GameEvent* GameField::getEvent(int x, int y) {
-    return events[x][y];
-}
-
-void GameField::addEvent(int x, int y, GameEvent* event) {
-    events[x][y] = event;
-}
+//GameEvent* GameField::getEvent(int x, int y) {
+//    return events[x][y];
+//}
+//
+//void GameField::addEvent(int x, int y, GameEvent* event) {
+//    events[x][y] = event;
+//}

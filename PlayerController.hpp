@@ -16,6 +16,12 @@ private:
 public:
     explicit PlayerController(Player& player, GameField& gameField);
     void move(Direction direction);
+
+    void setX(int x);
+    void setY(int y);
+    int getX();
+    int getY();
+
     void checkForEvent();
     void printPosition();
     void showField();

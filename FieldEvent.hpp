@@ -7,10 +7,14 @@
 #include "GameField.hpp"
 
 class FieldEvent : public GameEvent{
+protected:
+    Player& player;
+    PlayerController& controller;
+    GameField& field;
 public:
     explicit FieldEvent(Player& player, PlayerController& controller, GameField& field);
     virtual ~FieldEvent() override = default;
-//    virtual void triggerEvent() override = 0;
+    void triggerEvent() override = 0;
 };
 
 #endif

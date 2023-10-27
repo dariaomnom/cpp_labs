@@ -26,8 +26,31 @@ void PlayerController::move(Direction direction) {
     if (gameField.getCell(newX, newY).isPassable()) {
         x = newX;
         y = newY;
+        checkForEvent();
     }
 }
+
+void PlayerController::setX(int x) {
+    if(x >= 0 && x < gameField.getSize().first)
+        this->x = x;
+    else if (x < 0)
+        this->x = 0;
+    else
+        this->x = gameField.getSize().first - 1;
+}
+
+void PlayerController::setY(int y) {
+    if (y >= 0 && y < gameField.getSize().second)
+        this->y = y;
+    else if (y < 0)
+        this->y = 0;
+    else
+        this->y = gameField.getSize().second - 1;
+}
+
+int PlayerController::getX() { return x; }
+int PlayerController::getY() { return y; }
+
 
 void PlayerController::printPosition() {
     cout << "Player is at (" << x << ", " << y << ")\n";
@@ -102,8 +125,18 @@ void PlayerController::startGame() {
 }
 
 void PlayerController::checkForEvent() {
-    GameEvent* event = gameField.getEvent(x, y);
-    if (event) {
+//    GameEvent* event = gameField.getEvent(x, y); // old
+
+// my
+//    GameEvent* event = gameField.getCell(x,y).getEvent();
+//    if (event) {
+//        event->triggerEvent();
+//    }
+
+    GameEvent* event = gameField.getCell(x, y).getEvent();
+    auto *pl = dynamic_cast<PlayerEvent *> (event);
+    if (pl){
         event->triggerEvent();
+        gameField.getCell(x, y).setEvent(nullptr);
     }
 }

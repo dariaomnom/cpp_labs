@@ -13,8 +13,8 @@ public:
     void setPassable(bool passable);
     bool isPassable() const;
 
-    GameEvent* getEvent(); // Get event from cell
-    void setEvent(GameEvent* event); // Set event to cell
+    GameEvent* getEvent();
+    void setEvent(GameEvent* event);
 
     Cell& operator=(Cell other);
     friend GameField;

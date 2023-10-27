@@ -1,6 +1,9 @@
 #include "Player.hpp"
 #include "PlayerController.hpp"
 #include "GameField.hpp"
+#include "EnemyEvent.hpp"
+#include "PointsEvent.hpp"
+#include "PositionEvent.hpp"
 
 #ifndef GAMEFIELDCREATOR_HPP
 #define GAMEFIELDCREATOR_HPP

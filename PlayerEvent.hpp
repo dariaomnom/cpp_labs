@@ -10,6 +10,7 @@ protected:
 public:
     explicit PlayerEvent(Player& player);
     virtual ~PlayerEvent() override = default;
+    void triggerEvent() override = 0;
 };
 
 #endif
