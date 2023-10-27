@@ -1,6 +1,10 @@
 #include "PlayerController.hpp"
 using namespace std;
 #include "lib/termcolor.hpp"
+#include "PointsEvent.hpp"
+#include "LivesEvent.hpp"
+#include "EnemyEvent.hpp"
+#include "PositionEvent.hpp"
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
         : player(player), gameField(gameField) {
@@ -84,9 +88,22 @@ void PlayerController::showField() {
     }
     for (int i = y_start; i < y_end; i++) {
         for (int j = x_start; j < x_end; j++) {
+            GameEvent* event = gameField.getCell(j, i).getEvent();
             if (gameField.getCell(j, i).isPassable()) {
                 if (x == j && y == i)
                     cout << termcolor::blue << "(T-T)" << termcolor::reset;
+                else if(dynamic_cast<PointsEvent *>(event)){
+                    cout << "  $  ";
+                }
+                else if(dynamic_cast<LivesEvent *>(event)){
+                    cout << "  +  ";
+                }
+                else if(dynamic_cast<EnemyEvent *>(event)){
+                    cout << " >:( ";
+                }
+                else if(dynamic_cast<PositionEvent *>(event)){
+                    cout << "  o  ";
+                }
                 else
                     cout << "  .  ";
             } else {

@@ -15,7 +15,6 @@ private:
     Player& player;
     PlayerController& controller;
 public:
-//    GameField createField(int level);
     explicit GameFieldCreator(GameField& field, Player& player, PlayerController& cl);
     ~GameFieldCreator() = default;
     void createField(int level);
