@@ -26,7 +26,9 @@ void PlayerController::move(Direction direction) {
     if (gameField.getCell(newX, newY).isPassable()) {
         x = newX;
         y = newY;
+        cout << x << ' ' << y << '\n';
         checkForEvent();
+        cout << x << ' ' << y << '\n';
     }
 }
 

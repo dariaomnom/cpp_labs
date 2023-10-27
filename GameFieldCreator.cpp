@@ -7,19 +7,23 @@ void GameFieldCreator::createField(int level) {
     int passable;
     int points;
     int enemies;
+    int position;
 
     if (level == 1) {
         passable = 5;
         points = 3;
         enemies = 5;
+        position = 6;
     } else if (level == 2) {
         passable = 3;
         points = 2;
         enemies = 3;
+        position = 5;
     } else {
         passable = 4;
         points = 3;
         enemies = 4;
+        position = 5;
     }
 
     int x = 0; int y = 0;
@@ -34,10 +38,13 @@ void GameFieldCreator::createField(int level) {
             if (!field.getCell(i,j).getEvent() && field.getCell(i,j).isPassable()) {
                 if (((j+1) * field.getSize().first + i + 1) % points == 0) {
                     field.getCell(i,j).setEvent(new PointsEvent(player));
-                    cout << "  " << j << " POINTS " << i << "    ";
+                    cout << "  " << i << " POINTS " << j << "    ";
                 } else if (((j+1) * field.getSize().first + i + 1) % enemies == 0) {
                     field.getCell(i,j).setEvent(new EnemyEvent(player));
-                    cout << j << " ENEMIES " << i << '\n';
+                    cout << i << " ENEMIES " << j << '\n';
+                } else if (((j+1) * field.getSize().first + i + 3) % position == 0) {
+                    field.getCell(i,j).setEvent(new PositionEvent(player, controller, field));
+                    cout << i << " TELEPORTS " << j << '\n';
                 }
                 cout << '\n';
             }
