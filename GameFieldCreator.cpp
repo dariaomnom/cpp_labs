@@ -14,11 +14,11 @@ void GameFieldCreator::createField(int level) {
         enemies = 5;
     } else if (level == 2) {
         passable = 3;
-        points = 3;
+        points = 2;
         enemies = 3;
     } else {
         passable = 4;
-        points = 4;
+        points = 3;
         enemies = 4;
     }
 
@@ -32,11 +32,14 @@ void GameFieldCreator::createField(int level) {
     for (int j = 0; j < field.getSize().second; j++) {
         for (int i = 0; i < field.getSize().first; i++) {
             if (!field.getCell(i,j).getEvent() && field.getCell(i,j).isPassable()) {
-                if ((j * field.getSize().first + i + 1) % points == 0) {
-//                    GameEvent* event = PointsEvent(player);
+                if (((j+1) * field.getSize().first + i + 1) % points == 0) {
                     field.getCell(i,j).setEvent(new PointsEvent(player));
-                    int a = 0;
+                    cout << "  " << j << " POINTS " << i << "    ";
+                } else if (((j+1) * field.getSize().first + i + 1) % enemies == 0) {
+                    field.getCell(i,j).setEvent(new EnemyEvent(player));
+                    cout << j << " ENEMIES " << i << '\n';
                 }
+                cout << '\n';
             }
         }
     }
