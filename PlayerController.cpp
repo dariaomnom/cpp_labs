@@ -10,10 +10,6 @@ using namespace std;
 PlayerController::PlayerController(Player& player, GameField& gameField)
         : player(player), gameField(gameField) {
     tie(x, y) = gameField.getEntry();
-//    if (player.getLives() > gameField.getSize().first * gameField.getSize().second / ENEMIES) {
-//        player.setLives(gameField.getSize().first * gameField.getSize().second / ENEMIES);
-////        player.setLives(3);
-//    }
 }
 
 void PlayerController::move(Direction direction) {

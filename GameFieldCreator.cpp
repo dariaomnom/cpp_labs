@@ -18,17 +18,17 @@ void GameFieldCreator::createField(int level) {
         enemies = 7;
         lives = 9;
     } else if (level == 2) {
-        passable = 3;
+        passable = 4;
         points = 4;
         position = 10;
-        enemies = 4;
+        enemies = 5;
         lives = 8;
 
     } else {
         passable = 4;
         points = 4;
         position = 10;
-        enemies = 5;
+        enemies = 6;
         lives = 8;
     }
 
@@ -110,7 +110,7 @@ void GameFieldCreator::createField(int level) {
         }
 
 //        cout << "poi " << poi << " " << points << " pos " << pos << " " << position << " en " << en << " " << enemies << " li " << li << " " << lives << "\n";
-        controller.showField();
+//        controller.showField();
     }
 
     if (player.getLives() > enemies) {

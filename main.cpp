@@ -7,7 +7,7 @@
 
 #include <iostream>
 using namespace std;
-#define FIELD_LVL 1
+#define FIELD_LVL 2
 #define FIELD_SIZE 10
 #define FIELD_W 70
 #define FIELD_H 70

@@ -2,6 +2,7 @@
 #define LABS_LIVESEVENT_HPP
 
 #include "PlayerEvent.hpp"
+#define ADDED_LIVES 3
 
 class LivesEvent : public PlayerEvent {
 public:

@@ -3,5 +3,5 @@
 PointsEvent::PointsEvent(Player& player) : PlayerEvent(player) {}
 
 void PointsEvent::triggerEvent() {
-    player.addPoints(5);
+    player.addPoints(ADDED_POINTS);
 }

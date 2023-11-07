@@ -3,5 +3,5 @@
 LivesEvent::LivesEvent(Player &player) : PlayerEvent(player){}
 
 void LivesEvent::triggerEvent() {
-    player.addLives();
+    player.addLives(ADDED_LIVES);
 }

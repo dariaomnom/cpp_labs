@@ -2,6 +2,7 @@
 #define LABS_POINTSEVENT_HPP
 
 #include "PlayerEvent.hpp"
+#define ADDED_POINTS 10
 
 class PointsEvent : public PlayerEvent {
 public:
