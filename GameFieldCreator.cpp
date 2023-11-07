@@ -23,7 +23,7 @@ void GameFieldCreator::createField(int level) {
     } else if (level == 2) {
         passable = 3;
 //        points = 4;
-        points = 7;
+        points = 4;
 //        position = 5;
         position = 8;
 //        enemies = 3;
@@ -73,7 +73,7 @@ void GameFieldCreator::createField(int level) {
 //                field.getCell(x, y).setPassable(false);
             if (!((x == field.getEntry().first && y == field.getEntry().second) || (x == field.getExit().first &&
                 y == field.getExit().second))) {
-                cout << x << " X " << y << " Y\n";
+//                cout << x << " X " << y << " Y\n";
 //                if (x >= 0 && x < width && y >= 0 && y < height)
                     field.getCell(x, y).setPassable(false);
             }
@@ -84,20 +84,37 @@ void GameFieldCreator::createField(int level) {
 
     for (int j = 0; j < field.getSize().second; j++) {
         for (int i = 0; i < field.getSize().first; i++) {
-//            srand(time(NULL));
-            GameEvent* event = field.getCell(i, j).getEvent();
-            if (field.getCell(i,j).getEvent()== nullptr && field.getCell(i,j).isPassable()
-                && (!((i == field.getEntry().first && j == field.getEntry().second) ||
-                      (i == field.getExit().first && j == field.getExit().second)))) {
-                x = rand() % field.getSize().first;
-                y = rand() % field.getSize().second;
-                if (dynamic_cast<PointsEvent *>(event) == nullptr &&
+
+            x = rand() % field.getSize().first;
+            y = rand() % field.getSize().second;
+            GameEvent* event = field.getCell(x, y).getEvent();
+
+            if (event == nullptr && field.getCell(x,y).isPassable()
+                && (!((x == field.getEntry().first && y == field.getEntry().second) ||
+                      (x == field.getExit().first && y == field.getExit().second)))) {
+//                x = rand() % field.getSize().first;
+//                y = rand() % field.getSize().second;
+                if (dynamic_cast<GameEvent *>(event) == nullptr &&
                         (!((x == field.getEntry().first && y == field.getEntry().second) ||
                         (x == field.getExit().first && y == field.getExit().second)))
                 ) {
-                    field.getCell(x, y).setEvent(new PointsEvent(player));
-                    poi++;
+                    if (poi <= points) {
+//                        x = rand() % field.getSize().first;
+//                        y = rand() % field.getSize().second;
+                        field.getCell(x, y).setEvent(new PointsEvent(player));
+                        poi++;
+                    }
+
+                    if (li <= lives) {
+//                        x = rand() % field.getSize().first;
+//                        y = rand() % field.getSize().second;
+                        field.getCell(x, y).setEvent(new LivesEvent(player));
+                        li++;
+                    }
                 }
+            } else {
+                i--;
+                j--;
             }
         }
     }
