@@ -1,9 +1,13 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
+#include "PlayerEvent.hpp"
+
 using namespace std;
+#define MAX_SIZE 101
+#define MIN_SIZE 3
 
 GameField::GameField(int width, int height, pair<int,int> entry, pair<int,int> exit) {
-    if (width > 3 && width < 101 && height > 3 && height < 101) {
+    if (width > MIN_SIZE && width < MAX_SIZE && height > MIN_SIZE && height < MAX_SIZE) {
         this->width = width;
         this->height = height;
     } else {
@@ -64,17 +68,27 @@ Cell& GameField::getCell(int x, int y) {
     throw out_of_range("Invalid cell coordinates");
 }
 
-void GameField::randomCells(int density) {
-    int x = 0; int y = 0;
-    for (int i = 0; i < (getSize().first * getSize().second / density); i++) {
-        x = rand() % getSize().first; y = rand() % getSize().second;
-        if (x != getEntry().first && y != getEntry().second && x != getExit().first && y != getExit().second)
-            getCell(x,y).setPassable(false);
-    }
-}
-
 pair<int, int> GameField::getEntry() const { return entry; }
 pair<int, int> GameField::getExit() const { return exit; }
 pair<int, int> GameField::getSize() const {
     return make_pair(width, height);
+}
+
+GameField& GameField::operator=(const GameField& other) {
+    if (this != &other) {
+        width = other.width;
+        height = other.height;
+        entry = other.entry;
+        exit = other.exit;
+        cells = new Cell*[height];
+        for (int i = 0; i < height; ++i) {
+            cells[i] = new Cell[width];
+        }
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                cells[i][j] = other.cells[i][j];
+            }
+        }
+    }
+    return *this;
 }

@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 using namespace std;
+#include "lib/termcolor.hpp"
 
 Player::Player(int lives, int points) {
     setLives(lives);
@@ -14,6 +15,11 @@ void Player::addLives(int lives) {
 
 void Player::loseLives(int lives) {
     setLives(this->lives - lives);
+    if (this->lives == 0) {
+        cout << termcolor::red << "Game over\n" << termcolor::reset;
+        printStats();
+        exit(0);
+    }
 }
 
 void Player::addPoints(int points) {

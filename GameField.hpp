@@ -1,8 +1,10 @@
-#ifndef GAMEFIELD_HPP
-#define GAMEFIELD_HPP
 #include <iostream>
 using namespace std;
 #include "Cell.hpp"
+#include "PlayerEvent.hpp"
+
+#ifndef GAMEFIELD_HPP
+#define GAMEFIELD_HPP
 
 class GameField {
 private:
@@ -15,9 +17,10 @@ public:
     GameField (GameField&& other);
     ~GameField();
     Cell& getCell(int x, int y);
-    void randomCells(int density = 4);
+
     pair<int, int> getEntry() const;
     pair<int, int> getExit() const;
     pair<int, int> getSize() const;
+    GameField& operator=(const GameField& other);
 };
 #endif

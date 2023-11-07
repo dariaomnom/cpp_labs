@@ -1,10 +1,13 @@
 #include "PlayerController.hpp"
-//#include <iostream>
 using namespace std;
 #include "lib/termcolor.hpp"
+#include "PointsEvent.hpp"
+#include "LivesEvent.hpp"
+#include "EnemyEvent.hpp"
+#include "PositionEvent.hpp"
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
-: player(player), gameField(gameField) {
+        : player(player), gameField(gameField) {
     tie(x, y) = gameField.getEntry();
 }
 
@@ -27,8 +30,31 @@ void PlayerController::move(Direction direction) {
     if (gameField.getCell(newX, newY).isPassable()) {
         x = newX;
         y = newY;
+        checkForEvent();
     }
 }
+
+void PlayerController::setX(int x) {
+    if(x >= 0 && x < gameField.getSize().first)
+        this->x = x;
+    else if (x < 0)
+        this->x = 0;
+    else
+        this->x = gameField.getSize().first - 1;
+}
+
+void PlayerController::setY(int y) {
+    if (y >= 0 && y < gameField.getSize().second)
+        this->y = y;
+    else if (y < 0)
+        this->y = 0;
+    else
+        this->y = gameField.getSize().second - 1;
+}
+
+int PlayerController::getX() { return x; }
+int PlayerController::getY() { return y; }
+
 
 void PlayerController::printPosition() {
     cout << "Player is at (" << x << ", " << y << ")\n";
@@ -60,9 +86,22 @@ void PlayerController::showField() {
     }
     for (int i = y_start; i < y_end; i++) {
         for (int j = x_start; j < x_end; j++) {
+            GameEvent* event = gameField.getCell(j, i).getEvent();
             if (gameField.getCell(j, i).isPassable()) {
                 if (x == j && y == i)
                     cout << termcolor::blue << "(T-T)" << termcolor::reset;
+                else if(dynamic_cast<PointsEvent *>(event)){
+                    cout << "  $  ";
+                }
+                else if(dynamic_cast<LivesEvent *>(event)){
+                    cout << "  +  ";
+                }
+                else if(dynamic_cast<EnemyEvent *>(event)){
+                    cout << " >:( ";
+                }
+                else if(dynamic_cast<PositionEvent *>(event)){
+                    cout << "  o  ";
+                }
                 else
                     cout << "  .  ";
             } else {
@@ -99,5 +138,13 @@ void PlayerController::startGame() {
                 player.printStats();
                 break;
         }
+    }
+}
+
+void PlayerController::checkForEvent() {
+    GameEvent* event = gameField.getCell(x,y).getEvent();
+    if (event) {
+        event->triggerEvent();
+        gameField.getCell(x, y).setEvent(nullptr);
     }
 }
