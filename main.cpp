@@ -7,17 +7,17 @@
 using namespace std;
 
 int main() {
-    int field_width = 15; int field_height = 15;
+    int field_width = 4; int field_height = 4;
 
     Player player;
     GameField field(field_width,field_height);
     PlayerController controller(player, field);
 
-    field.randomCells(3);
-//    controller.startGame();
+    cout << field.getEntry().first << " " << field.getEntry().second << " START\n";
+    cout << field.getExit().first << " " << field.getExit().second << " FINISH\n";
 
-//    cout << field.getEntry().first << " " << field.getEntry().second << "\n";
-//    cout << field.getExit().first << " " << field.getExit().second << "\n";
+    field.randomCells(3);
+    controller.startGame();
 
     return 0;
 }

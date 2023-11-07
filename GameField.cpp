@@ -1,7 +1,8 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
+using namespace std;
 
-GameField::GameField(int width, int height) {
+GameField::GameField(int width, int height, pair<int,int> entry, pair<int,int> exit) {
     if (width > 3 && width < 101 && height > 3 && height < 101) {
         this->width = width;
         this->height = height;
@@ -13,13 +14,48 @@ GameField::GameField(int width, int height) {
     for(int i = 0; i < height; ++i)
         cells[i] = new Cell[width];
 
-    entry = make_pair(0,0);
-    exit = make_pair(width-1,height-1);
+    if (entry.first >= 0 && entry.first < width && exit.first >= 0 && exit.first < height) {
+        this->entry = entry;
+        this->exit = exit;
+    } else {
+        this->entry = make_pair(0,0);
+        this->exit = make_pair(width-1,height-1);
+    }
 }
+
+GameField::GameField(GameField& other) {
+    width = other.width;
+    height = other.height;
+    entry = other.entry;
+    exit = other.exit;
+
+    cells = new Cell*[height];
+    for (int i = 0; i < height; ++i) {
+        cells[i] = new Cell[width];
+    }
+
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            cells[i][j] = other.cells[i][j];
+        }
+    }
+}
+
+GameField::GameField (GameField&& other) {
+    width = other.width;
+    height = other.height;
+    entry = std::move(other.entry);
+    exit = std::move(other.exit);
+    cells = other.cells;
+    other.cells = nullptr;
+}
+
 GameField::~GameField() {
-    for(int i = 0; i < height; ++i)
-        delete [] cells[i];
-    delete [] cells;
+    if (this->cells != nullptr) {
+        for (int i = 0; i < height; ++i)
+            delete[] cells[i];
+        delete[] cells;
+    }
 }
 
 Cell& GameField::getCell(int x, int y) {
@@ -32,7 +68,7 @@ void GameField::randomCells(int density) {
     int x = 0; int y = 0;
     for (int i = 0; i < (getSize().first * getSize().second / density); i++) {
         x = rand() % getSize().first; y = rand() % getSize().second;
-        if (x+y != 0)
+        if (x != getEntry().first && y != getEntry().second && x != getExit().first && y != getExit().second)
             getCell(x,y).setPassable(false);
     }
 }
