@@ -23,7 +23,9 @@ public:
 
     bool findPath(GameField& field, bool **visited, int x, int y, int exitX, int exitY, int width, int height);
 
-    int checkPath(GameField& field);
+    bool checkPath(GameField& field);
+
+    bool checkRandomCords(GameField& field, int x, int y);
 };
 
 #endif

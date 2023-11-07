@@ -7,10 +7,10 @@
 
 #include <iostream>
 using namespace std;
-#define FIELD_LVL 2
+#define FIELD_LVL 1
 #define FIELD_SIZE 10
-#define FIELD_W 5
-#define FIELD_H 5
+#define FIELD_W 4
+#define FIELD_H 4
 
 
 int main() {
@@ -20,8 +20,8 @@ int main() {
 //    GameField field(FIELD_W, FIELD_H, make_pair(0,0), make_pair(6,6));
     PlayerController controller(player, field);
 
-    cout << field.getEntry().first << " " << field.getEntry().second << " START\n";
-    cout << field.getExit().first << " " << field.getExit().second << " FINISH\n";
+//    cout << field.getEntry().first << " " << field.getEntry().second << " START\n";
+//    cout << field.getExit().first << " " << field.getExit().second << " FINISH\n";
 
     GameFieldCreator creator(field, player, controller);
     creator.createField(FIELD_LVL);
