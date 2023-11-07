@@ -5,15 +5,15 @@ using namespace std;
 #include "LivesEvent.hpp"
 #include "EnemyEvent.hpp"
 #include "PositionEvent.hpp"
-#define ENEMIES 3
+//#define ENEMIES 4
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
         : player(player), gameField(gameField) {
     tie(x, y) = gameField.getEntry();
-    if (player.getLives() > gameField.getSize().first * gameField.getSize().second / ENEMIES) {
+//    if (player.getLives() > gameField.getSize().first * gameField.getSize().second / ENEMIES) {
 //        player.setLives(gameField.getSize().first * gameField.getSize().second / ENEMIES);
-        player.setLives(3);
-    }
+////        player.setLives(3);
+//    }
 }
 
 void PlayerController::move(Direction direction) {
