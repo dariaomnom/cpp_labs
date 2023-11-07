@@ -9,14 +9,15 @@
 using namespace std;
 #define FIELD_LVL 2
 #define FIELD_SIZE 10
-#define FIELD_W 10
-#define FIELD_H 10
+#define FIELD_W 4
+#define FIELD_H 4
 
 
 int main() {
 
     Player player;
     GameField field(FIELD_W, FIELD_H);
+//    GameField field(FIELD_W, FIELD_H, make_pair(0,0), make_pair(6,6));
     PlayerController controller(player, field);
 
     cout << field.getEntry().first << " " << field.getEntry().second << " START\n";

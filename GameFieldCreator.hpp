@@ -18,6 +18,12 @@ public:
     explicit GameFieldCreator(GameField& field, Player& player, PlayerController& cl);
     ~GameFieldCreator() = default;
     void createField(int level);
+
+    bool isSafe(GameField& field, bool **visited, int x, int y, int width, int height);
+
+    bool findPath(GameField& field, bool **visited, int x, int y, int exitX, int exitY, int width, int height);
+
+    int checkPath(GameField& field);
 };
 
 #endif

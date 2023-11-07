@@ -61,6 +61,7 @@ void PlayerController::printPosition() {
 }
 
 void PlayerController::showField() {
+    cout << "\n";
     int w = gameField.getSize().first;
     int h = gameField.getSize().second;
     int x_start = 0;
@@ -101,6 +102,9 @@ void PlayerController::showField() {
                 }
                 else if(dynamic_cast<PositionEvent *>(event)){
                     cout << "  o  ";
+                }
+                else if(gameField.getExit().first == j && gameField.getExit().second == i){
+                    cout << termcolor::green << " !!! " << termcolor::reset;
                 }
                 else
                     cout << "  .  ";
