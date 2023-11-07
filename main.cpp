@@ -9,8 +9,8 @@
 using namespace std;
 #define FIELD_LVL 2
 #define FIELD_SIZE 10
-#define FIELD_W 7
-#define FIELD_H 7
+#define FIELD_W 5
+#define FIELD_H 5
 
 
 int main() {
