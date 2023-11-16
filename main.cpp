@@ -4,6 +4,8 @@
 #include "GameField.hpp"
 #include "PlayerEvent.hpp"
 #include "GameFieldCreator.hpp"
+#include "Game.hpp"
+#include <ncurses.h>
 
 #include <iostream>
 using namespace std;
@@ -14,19 +16,24 @@ using namespace std;
 
 
 int main() {
+    initscr();
 
-    Player player;
-    GameField field(FIELD_W, FIELD_H);
+    Game game;
+    game.startGame();
+
+//    Player player;
+//    GameField field(FIELD_W, FIELD_H);
 //    GameField field(FIELD_W, FIELD_H, make_pair(0,0), make_pair(6,6));
-    PlayerController controller(player, field);
+//    PlayerController controller(player, field);
 
 //    cout << field.getEntry().first << " " << field.getEntry().second << " START\n";
 //    cout << field.getExit().first << " " << field.getExit().second << " FINISH\n";
 
-    GameFieldCreator creator(field, player, controller);
-    creator.createField(FIELD_LVL);
+//    GameFieldCreator creator(field, player, controller);
+//    creator.createField(FIELD_LVL);
+//
+//    controller.startGame();
 
-    controller.startGame();
-
+    endwin();
     return 0;
 }

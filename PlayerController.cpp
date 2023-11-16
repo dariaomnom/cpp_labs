@@ -5,6 +5,7 @@ using namespace std;
 #include "LivesEvent.hpp"
 #include "EnemyEvent.hpp"
 #include "PositionEvent.hpp"
+#include <ncurses.h>
 //#define ENEMIES 4
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
@@ -60,6 +61,37 @@ int PlayerController::getY() { return y; }
 void PlayerController::printPosition() {
     cout << "Player is at (" << x << ", " << y << ")\n";
 }
+
+
+void PlayerController::drawGameField() {
+    int width, height;
+    std::tie(width, height) = gameField.getSize();
+
+    // Очищаем экран
+    clear();
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            Cell& cell = gameField.getCell(x, y);
+
+            // Выбираем символ для отрисовки в зависимости от состояния ячейки
+            char symbol = ' ';
+            if (!cell.isPassable()) {
+                symbol = '#'; // Символ для непроходимой ячейки
+            }
+            else if (cell.getEvent() != nullptr) {
+                symbol = '*'; // Символ для ячейки с событием
+            }
+
+            // Отрисовываем символ
+            mvaddch(y, x, symbol);
+        }
+    }
+
+    // Обновляем экран
+    refresh();
+}
+
 
 void PlayerController::showField() {
     cout << "\n";

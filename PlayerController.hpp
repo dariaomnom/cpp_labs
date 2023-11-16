@@ -25,7 +25,10 @@ public:
 
     void checkForEvent();
     void printPosition();
+
+    void drawGameField();
     void showField();
+
     void startGame();
 };
 #endif
