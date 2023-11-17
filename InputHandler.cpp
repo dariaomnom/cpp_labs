@@ -43,6 +43,8 @@ Command InputHandler::stringToCommand(const std::string& command) {
             return Command::PLAY_LVL_1;
     if (command == "PLAY_LVL_2")
         return Command::PLAY_LVL_2;
+    if (command == "STATS")
+        return Command::STATS;
     if (command == "NOTHING")
             return Command::NOTHING;
     return Command::NOTHING;

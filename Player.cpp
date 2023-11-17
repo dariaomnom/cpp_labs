@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 using namespace std;
-#include "lib/termcolor.hpp"
+//#include "lib/termcolor.hpp"
 
 Player::Player(int lives, int points) {
     setLives(lives);
@@ -15,11 +15,11 @@ void Player::addLives(int lives) {
 
 void Player::loseLives(int lives) {
     setLives(this->lives - lives);
-    if (this->lives == 0) {
-        cout << termcolor::red << "Game over\n" << termcolor::reset;
-        printStats();
-        exit(0);
-    }
+//    if (this->lives == 0) {
+//        cout << termcolor::red << "Game over\n" << termcolor::reset;
+//        printStats();
+//        exit(0);
+//    }
 }
 
 void Player::addPoints(int points) {
@@ -62,8 +62,17 @@ int Player::getPoints() const { return points; }
 int Player::getLevel() const { return level; }
 
 void Player::printStats() {
-    cout << "STATS\n";
-    cout << "Lives: " << getLives() << "\n";
-    cout << "Points: " << getPoints() << "\n";
-    cout << "Level: " << getLevel() << "\n";
+//    cout << "STATS\n";
+//    cout << "Lives: " << getLives() << "\n";
+//    cout << "Points: " << getPoints() << "\n";
+//    cout << "Level: " << getLevel() << "\n";
+
+    clear();
+    init_pair(8, COLOR_CYAN, COLOR_BLACK);
+    attron(COLOR_PAIR(8));
+//    std::string start_message = "\n   ";
+    printw("\n   STATS\n   Lives: %d\n   Points: %d\n   Level: %d\n", getLives(), getPoints(), getLevel());
+    attroff(COLOR_PAIR(8));
+    refresh();
+
 }

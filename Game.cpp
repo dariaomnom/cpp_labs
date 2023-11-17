@@ -7,7 +7,9 @@
 
 Game::Game() {}
 
-void Game::handleCommand(PlayerController& controller, Command command) {
+void Game::handleCommand(Player& player, PlayerController& controller, Command command) {
+    int stat_char;
+    std::string stats_message = "\n   Press any key to continue\n";
     switch(command) {
         case Command::MOVE_UP:
             controller.move(Direction::UP);
@@ -28,6 +30,12 @@ void Game::handleCommand(PlayerController& controller, Command command) {
             break;
         case Command::PLAY_LVL_2:
             break;
+        case Command::STATS:
+            player.printStats();
+            printw("%s", stats_message.c_str());
+            stat_char = getch();
+            endwin();
+            break;
         case Command::QUIT:
             quit();
             break;
@@ -44,8 +52,8 @@ void Game::startGame() {
         init_pair(5, COLOR_CYAN, COLOR_BLACK);
         attron(COLOR_PAIR(5));
         std::string n_message = "\n";
-        printw("%s", n_message.c_str());
-        std::string level_message = "   Welcome to the game!\n   Select difficulty level (1 or 2)";
+//        printw("%s", n_message.c_str());
+        std::string level_message = "\n   Welcome to the game!\n   Select difficulty level (1 or 2)\n";
         printw("%s", level_message.c_str());
         attroff(COLOR_PAIR(5));
         refresh();
@@ -67,7 +75,7 @@ void Game::startGame() {
 }
 
 void Game::playGame(int lvl) {
-    Player player;
+    Player player(3);
     std::array<int, 2> size_level;
     lvl == 1 ? size_level = {10, 10} : size_level = {30, 30};
 
@@ -79,39 +87,37 @@ void Game::playGame(int lvl) {
     else if (lvl == 2)
         creator.createField(2);
 
-
     InputHandler inputHandler("commandMap.txt");
 
     clear();
     init_pair(4, COLOR_CYAN, COLOR_BLACK);
     attron(COLOR_PAIR(4));
-    std::string n_message = "\n";
-    printw("%s", n_message.c_str());
-    std::string start_message = "   Press any key to start the game";
+    std::string start_message = "\n   Press any key to start the game\n";
     printw("%s", start_message.c_str());
     attroff(COLOR_PAIR(4));
     refresh();
     int ch = getch();
 
 
-
     while (true) {
-        controller.drawGameField();
-        int ch = getch();
+        if (ch != 112)
+            controller.drawGameField();
+        ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
-        handleCommand(controller, command);
+        handleCommand(player, controller, command);
 
         if (checkWin(field, controller)) {
             clear();
             endwin();
-            printw("%s", n_message.c_str());
+            player.printStats();
             init_pair(6, COLOR_GREEN, COLOR_BLACK);
             attron(COLOR_PAIR(6));
-            std::string win_message = "   You win!\n   Press any key to restart the game\n   or 'q' to quit";
+            std::string win_message = "\n   You win!\n   Press any key to restart the game\n   or 'q' to quit\n";
             printw("%s", win_message.c_str());
             attroff(COLOR_PAIR(6));
             ch = getch();
+            endwin();
             if (ch == 113) // q
                 exit(0);
             else
@@ -121,13 +127,14 @@ void Game::playGame(int lvl) {
         if (checkLoss(player)) {
             clear();
             endwin();
-            printw("%s", n_message.c_str());
+            player.printStats();
             init_pair(7, COLOR_RED, COLOR_BLACK);
             attron(COLOR_PAIR(7));
-            std::string lose_message = "   Game over!\n   Press any key to start the game\n   or 'q' to quit";
+            std::string lose_message = "\n   Game over!\n   Press any key to start the game\n   or 'q' to quit\n";
             printw("%s", lose_message.c_str());
             attroff(COLOR_PAIR(7));
             ch = getch();
+            endwin();
             if (ch == 113) // q
                 exit(0);
             else
@@ -154,21 +161,15 @@ void Game::setDifficulty(int lvl) {
 //}
 
 void Game::quit() {
-//    clear();
-//    endwin();
-//    cout << termcolor::red << "You are out of the game!\n" << termcolor::reset;
-//    exit(0);
-
     clear();
     endwin();
-    std::string n_message = "\n";
-    printw("%s", n_message.c_str());
     init_pair(6, COLOR_YELLOW, COLOR_BLACK);
     attron(COLOR_PAIR(6));
-    std::string win_message = "   Do you want to quit?\n   Press any key to restart the game\n   or 'q' to quit";
+    std::string win_message = "\n   Do you want to quit?\n   Press any key to restart the game\n   or 'q' to quit\n";
     printw("%s", win_message.c_str());
     attroff(COLOR_PAIR(6));
     int ch = getch();
+    endwin();
     if (ch == 113) // q
         exit(0);
     else

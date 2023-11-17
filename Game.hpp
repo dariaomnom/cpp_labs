@@ -25,7 +25,7 @@ public:
     bool checkWin(GameField& field, PlayerController& controller);
     bool checkLoss(Player& player);
     void restart();
-    void handleCommand(PlayerController& controller, Command command);
+    void handleCommand(Player& player, PlayerController& controller, Command command);
 };
 
 #endif
