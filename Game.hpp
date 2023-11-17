@@ -13,23 +13,15 @@ using namespace std;
 class Game {
 private:
     int level;
-//    Player& player;
-//    GameField& field;
-//    PlayerController& controller;
-//    GameFieldCreator& creator;
 
 public:
     explicit Game();
-//    Game();
-
-    bool playLevel1();
-    bool playLevel2();
-
+//    bool playLevel1();
+//    bool playLevel2();
     void startGame();
     void playGame(int lvl);
     void quit();
     void setDifficulty(int level);
-//    void movePlayer(Direction direction);
     bool checkWin(GameField& field, PlayerController& controller);
     bool checkLoss(Player& player);
     void restart();

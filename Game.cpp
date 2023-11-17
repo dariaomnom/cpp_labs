@@ -5,12 +5,7 @@
 #define FIELD_H_2 30
 
 
-Game::Game() {
-//    player = Player();
-//    field = GameField();
-//    controller = PlayerController(player, field);
-//    creator = GameFieldCreator(field, player, controller);
-}
+Game::Game() {}
 
 void Game::handleCommand(PlayerController& controller, Command command) {
     switch(command) {
@@ -107,6 +102,38 @@ void Game::playGame(int lvl) {
         Command command = inputHandler.handleInput(input);
         handleCommand(controller, command);
 
+        if (checkWin(field, controller)) {
+            clear();
+            endwin();
+            printw("%s", n_message.c_str());
+            init_pair(6, COLOR_GREEN, COLOR_BLACK);
+            attron(COLOR_PAIR(6));
+            std::string win_message = "   You win!\n   Press any key to restart the game\n   or 'q' to quit";
+            printw("%s", win_message.c_str());
+            attroff(COLOR_PAIR(6));
+            ch = getch();
+            if (ch == 113) // q
+                exit(0);
+            else
+                startGame();
+        }
+
+        if (checkLoss(player)) {
+            clear();
+            endwin();
+            printw("%s", n_message.c_str());
+            init_pair(7, COLOR_RED, COLOR_BLACK);
+            attron(COLOR_PAIR(7));
+            std::string lose_message = "   Game over!\n   Press any key to start the game\n   or 'q' to quit";
+            printw("%s", lose_message.c_str());
+            attroff(COLOR_PAIR(7));
+            ch = getch();
+            if (ch == 113) // q
+                exit(0);
+            else
+                startGame();
+        }
+
         if (command == Command::QUIT) {
             break;
         }
@@ -117,74 +144,45 @@ void Game::setDifficulty(int lvl) {
     level = lvl;
 }
 
-bool Game::playLevel1() {
-//    Player player;
-//    GameField field(50, 50);
-//    PlayerController controller(player,field);
-//    GameFieldCreator creator(field, player, controller);
-//    creator.createField(1);
-    playGame(1);
-//    controller.startGame();
-    return true;
-}
-bool Game::playLevel2() {
-//    Player player;
-//    GameField field(50, 50);
-//    PlayerController controller(player,field);
-//    GameFieldCreator creator(field, player, controller);
-//    creator.createField(1);
-    playGame(1);
-//    controller.startGame();
-    return true;
-}
-//
+//bool Game::playLevel1() {
+//    playGame(1);
+//    return true;
+//}
 //bool Game::playLevel2() {
+//    playGame(2);
 //    return true;
 //}
 
-//Game::Game() : player(), gameField(), playerController(player, gameField) {
-//    // Здесь вы можете инициализировать игру, например, установить начальный уровень сложности
-//}
-
 void Game::quit() {
-    // Здесь вы можете завершить игру, например, сохранить прогресс и выйти из программы
 //    clear();
-//    std::string quit_message = "You are out of the game!";
-//    printw("%s", quit_message.c_str());
-//    mvprintw(10, 10, "%s", quit_message.c_str());
-//    printw("\n");
-//    refresh();
+//    endwin();
+//    cout << termcolor::red << "You are out of the game!\n" << termcolor::reset;
+//    exit(0);
+
     clear();
     endwin();
-//    cout << "You are out of the game!\n";
-    cout << termcolor::red << "You are out of the game!\n" << termcolor::reset;
-    exit(0);
+    std::string n_message = "\n";
+    printw("%s", n_message.c_str());
+    init_pair(6, COLOR_YELLOW, COLOR_BLACK);
+    attron(COLOR_PAIR(6));
+    std::string win_message = "   Do you want to quit?\n   Press any key to restart the game\n   or 'q' to quit";
+    printw("%s", win_message.c_str());
+    attroff(COLOR_PAIR(6));
+    int ch = getch();
+    if (ch == 113) // q
+        exit(0);
+    else
+        startGame();
 }
 
-//void Game::movePlayer(Direction direction) {
-//    // Здесь вы можете переместить игрока в указанном направлении
-//    controller.move(direction);
-//}
-
 bool Game::checkWin(GameField& field, PlayerController& controller) {
-    if (field.getExit().first == controller.getX() && field.getExit().second == controller.getY()) {
+    if (field.getExit().first == controller.getX() && field.getExit().second == controller.getY())
         return true;
-    }
-    // Здесь вы можете проверить условия победы, например, достиг ли игрок конца игрового поля
-    // Возвращаем true, если игрок выиграл, и false в противном случае
     return false;
 }
 
 bool Game::checkLoss(Player& player) {
-    // Здесь вы можете проверить условия проигрыша, например, остались ли у игрока жизни
-    // Возвращаем true, если игрок проиграл, и false в противном случае
     if (player.getLives() == 0)
         return true;
     return false;
 }
-
-void Game::restart() {
-    // Здесь вы можете перезапустить игру, например, сбросить игровое поле и очки игрока
-}
-
-
