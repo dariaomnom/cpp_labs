@@ -16,8 +16,6 @@ private:
 
 public:
     explicit Game();
-//    bool playLevel1();
-//    bool playLevel2();
     void startGame();
     void playGame(int lvl);
     void quit();

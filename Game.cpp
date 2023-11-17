@@ -51,8 +51,6 @@ void Game::startGame() {
         clear();
         init_pair(5, COLOR_CYAN, COLOR_BLACK);
         attron(COLOR_PAIR(5));
-        std::string n_message = "\n";
-//        printw("%s", n_message.c_str());
         std::string level_message = "\n   Welcome to the game!\n   Select difficulty level (1 or 2)\n";
         printw("%s", level_message.c_str());
         attroff(COLOR_PAIR(5));

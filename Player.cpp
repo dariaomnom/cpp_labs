@@ -70,7 +70,6 @@ void Player::printStats() {
     clear();
     init_pair(8, COLOR_CYAN, COLOR_BLACK);
     attron(COLOR_PAIR(8));
-//    std::string start_message = "\n   ";
     printw("\n   STATS\n   Lives: %d\n   Points: %d\n   Level: %d\n", getLives(), getPoints(), getLevel());
     attroff(COLOR_PAIR(8));
     refresh();

@@ -46,31 +46,20 @@ void GameFieldCreator::createField(int level) {
     bool passable_path = false;
 
     do {
-//        if (checkPath(field) != 0) {
             for (int j = 0; j < field.getSize().second; j++) {
                 for (int i = 0; i < field.getSize().first; i++) {
                     field.getCell(i, j).setPassable(true);
                 }
             }
-//        }
-
-        // rand walls
         for (int i = 0; i < (field.getSize().first * field.getSize().second / passable); i++) {
             x = rand() % field.getSize().first;
             y = rand() % field.getSize().second;
             if (!((x == field.getEntry().first && y == field.getEntry().second) || (x == field.getExit().first &&
                 y == field.getExit().second))
-//                && (x >= 0 && x < width && y >= 0 && y < height)
                 ) {
-//                cout << x << " X " << y << " Y\n";
-//                if (x >= 0 && x < width && y >= 0 && y < height && field.getCell(x, y).isPassable())
                     field.getCell(x, y).setPassable(false);
-//                else
-//                    i--;
             } else i--;
         }
-//        cout << "Generated field without events:";
-//        controller.showField();
         controller.drawGameField();
     } while (!checkPath(field));
 
@@ -110,8 +99,6 @@ void GameFieldCreator::createField(int level) {
             en++;
         }
 
-//        cout << "poi " << poi << " " << points << " pos " << pos << " " << position << " en " << en << " " << enemies << " li " << li << " " << lives << "\n";
-//        controller.showField();
     }
 
     if (player.getLives() > enemies) {
@@ -121,14 +108,12 @@ void GameFieldCreator::createField(int level) {
 }
 
 
-// Функция для проверки, является ли данная позиция допустимой
 bool GameFieldCreator::isSafe(GameField& field, bool **visited, int x, int y, int width, int height) {
     if(x >= 0 && x < width && y >= 0 && y < height && field.getCell(x,y).isPassable()/*maze[x][y] == '.'*/ && !visited[x][y])
         return true;
     return false;
 }
 
-// Функция для поиска пути в лабиринте
 bool GameFieldCreator::findPath(GameField& field, bool **visited, int x, int y, int exitX, int exitY, int width, int height) {
     if(x == exitX && y == exitY)
         return true;
@@ -149,11 +134,10 @@ bool GameFieldCreator::findPath(GameField& field, bool **visited, int x, int y, 
     return false;
 }
 
-// Функция, которую вы вызываете
 bool GameFieldCreator::checkPath(GameField& field) {
     int width = field.getSize().first;
     int height = field.getSize().second;
-    // Создаем массив для отслеживания посещенных ячеек
+
     bool **visited = new bool*[width];
     for(int i = 0; i < width; i++) {
         visited[i] = new bool[height];
@@ -172,8 +156,6 @@ bool GameFieldCreator::checkRandomCords(GameField& field, int x, int y) {
     if (event == nullptr && field.getCell(x,y).isPassable()
      && (!((x == field.getEntry().first && y == field.getEntry().second) ||
            (x == field.getExit().first && y == field.getExit().second)))
-//     && (dynamic_cast<GameEvent *>(event) == nullptr)
-//     && (poi <= points)
      )
         return true;
     return false;

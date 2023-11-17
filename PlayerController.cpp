@@ -125,7 +125,7 @@ void PlayerController::drawGameField() {
             } else {
                 cell_view = " [#] ";
             }
-//            print_pos_y++;
+
             if (cell_view == " !!! ")
                 attron(COLOR_PAIR(1));
             if (cell_view == "  >: ")
