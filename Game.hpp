@@ -8,25 +8,7 @@
 #include <iostream>
 using namespace std;
 #include <ncurses.h>
-//#include <conio.h>
-//#define FIELD_W 70
-//#define FIELD_H 70
-
-//class Game {
-//private:
-//    int level;
-////    Player& player;
-////    PlayerController& controller;
-////    GameField& field;
-////    GameFieldCreator& creator;
-//public:
-//    explicit Game();
-//    void startGame();
-//    bool playLevel1();
-//    bool playLevel2();
-//    void move();
-//};
-
+#include <array>
 
 class Game {
 private:

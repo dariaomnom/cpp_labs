@@ -6,7 +6,7 @@ using namespace std;
 #include "EnemyEvent.hpp"
 #include "PositionEvent.hpp"
 #include <ncurses.h>
-#define REGION_AROUND_PLAYER 10
+#define REGION_AROUND_PLAYER 9
 
 PlayerController::PlayerController(Player& player, GameField& gameField)
         : player(player), gameField(gameField) {
@@ -64,33 +64,7 @@ void PlayerController::printPosition() {
 
 
 void PlayerController::drawGameField() {
-//    int width, height;
-//    std::tie(width, height) = gameField.getSize();
-//
-//    // Очищаем экран
     clear();
-//
-//    for (int y = 0; y < height; ++y) {
-//        for (int x = 0; x < width; ++x) {
-//            Cell& cell = gameField.getCell(x, y);
-//
-//            // Выбираем символ для отрисовки в зависимости от состояния ячейки
-//            char symbol = ' ';
-//            if (!cell.isPassable()) {
-//                symbol = '#'; // Символ для непроходимой ячейки
-//            }
-//            else if (cell.getEvent() != nullptr) {
-//                symbol = '*'; // Символ для ячейки с событием
-//            }
-//            else if () {
-//                symbol = '*'; // Символ для ячейки с событием
-//            }
-//
-//            // Отрисовываем символ
-//            mvaddch(y, x, symbol);
-//        }
-//    }
-//    cout << "\n";
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     init_pair(2, COLOR_RED, COLOR_BLACK);
     init_pair(3, COLOR_CYAN, COLOR_BLACK);
@@ -119,19 +93,13 @@ void PlayerController::drawGameField() {
         if (y_center < area/2) { y_start = 0; y_end = area; }
         else if (y_center >= h - area/2) { y_start = h - area; y_end = h; }
         else { y_start = y_center - area/2; y_end = y_center + area/2+1; }
-
-//        if (x_center < 3) { x_start = 0; x_end = 7; }
-//        else if (x_center >= w-3) { x_start = w-7; x_end = w; }
-//        else { x_start = x_center - 3; x_end = x_center + 4; }
-//
-//        if (y_center < 3) { y_start = 0; y_end = 7; }
-//        else if (y_center >= h-3) { y_start = h-7; y_end = h; }
-//        else { y_start = y_center - 3; y_end = y_center + 4; }
     }
     std::string cell_view;
-    int print_pos_y = 0;
-//    mvprintw(10, 10, "%s", message.c_str());
+    std::string n_message = "\n";
+    printw("%s", n_message.c_str());
     for (int i = y_start; i < y_end; i++) {
+        cell_view = "   ";
+        printw("%s", cell_view.c_str());
         for (int j = x_start; j < x_end; j++) {
             GameEvent* event = gameField.getCell(j, i).getEvent();
             if (gameField.getCell(j, i).isPassable()) {
@@ -172,11 +140,8 @@ void PlayerController::drawGameField() {
             if (cell_view == "(T-T)")
                 attroff(COLOR_PAIR(3));
         }
-        print_pos_y++;
         printw("\n");
     }
-
-    // Обновляем экран
     refresh();
 }
 

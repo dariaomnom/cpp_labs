@@ -1,4 +1,9 @@
 #include "Game.hpp"
+#define FIELD_W_1 10
+#define FIELD_H_1 10
+#define FIELD_W_2 30
+#define FIELD_H_2 30
+
 
 Game::Game() {
 //    player = Player();
@@ -25,7 +30,6 @@ void Game::handleCommand(PlayerController& controller, Command command) {
             startGame();
             break;
         case Command::PLAY_LVL_1:
-//            playLevel1();
             break;
         case Command::PLAY_LVL_2:
             break;
@@ -38,47 +42,41 @@ void Game::handleCommand(PlayerController& controller, Command command) {
 }
 
 void Game::startGame() {
-
     InputHandler inputHandler("commandMap.txt");
 
     while (true) {
         clear();
-        std::string level_message = "Select difficulty level (1 or 2)";
+        init_pair(5, COLOR_CYAN, COLOR_BLACK);
+        attron(COLOR_PAIR(5));
+        std::string n_message = "\n";
+        printw("%s", n_message.c_str());
+        std::string level_message = "   Welcome to the game!\n   Select difficulty level (1 or 2)";
         printw("%s", level_message.c_str());
+        attroff(COLOR_PAIR(5));
         refresh();
         int ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
-//        handleCommand(controller, command);
         if (command == Command::PLAY_LVL_1) {
             this->level = 1;
-//            playLevel1();
             playGame(1);
             break;
         }
         if (command == Command::PLAY_LVL_2) {
             this->level = 2;
-//            playLevel2();
             playGame(2);
             break;
         }
     }
 
-//    char lvl = '1';
-////    cin >> lvl;
-//    level = lvl;
-//    if (lvl == '1') {
-//        playLevel1();
-//    }
-//    else if (lvl == '2') {
-//        playLevel2();
-//    }
-
 }
 
 void Game::playGame(int lvl) {
     Player player;
-    GameField field(50, 50);
+    std::array<int, 2> size_level;
+    lvl == 1 ? size_level = {10, 10} : size_level = {30, 30};
+
+    GameField field(size_level[0], size_level[1]);
     PlayerController controller(player,field);
     GameFieldCreator creator(field, player, controller);
     if (lvl == 1)
@@ -90,8 +88,13 @@ void Game::playGame(int lvl) {
     InputHandler inputHandler("commandMap.txt");
 
     clear();
-    std::string start_message = "Press any key to start the game";
+    init_pair(4, COLOR_CYAN, COLOR_BLACK);
+    attron(COLOR_PAIR(4));
+    std::string n_message = "\n";
+    printw("%s", n_message.c_str());
+    std::string start_message = "   Press any key to start the game";
     printw("%s", start_message.c_str());
+    attroff(COLOR_PAIR(4));
     refresh();
     int ch = getch();
 
@@ -184,33 +187,4 @@ void Game::restart() {
     // Здесь вы можете перезапустить игру, например, сбросить игровое поле и очки игрока
 }
 
-
-//
-//void Game::move() {
-//    char dir;
-//    while (dir != 'q') {
-//        cin >> dir;
-//        switch (dir) {
-//            case 'w':
-//                this->move(Direction::UP);
-//                this->showField();
-//                break;
-//            case 's':
-//                this->move(Direction::DOWN);
-//                this->showField();
-//                break;
-//            case 'a':
-//                this->move(Direction::LEFT);
-//                this->showField();
-//                break;
-//            case 'd':
-//                this->move(Direction::RIGHT);
-//                this->showField();
-//                break;
-//            case 'p':
-//                player.printStats();
-//                break;
-//        }
-//    }
-//}
 
