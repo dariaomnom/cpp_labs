@@ -71,6 +71,7 @@ void GameFieldCreator::createField(int level) {
         }
 //        cout << "Generated field without events:";
 //        controller.showField();
+        controller.drawGameField();
     } while (!checkPath(field));
 
 

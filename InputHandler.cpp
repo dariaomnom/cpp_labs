@@ -11,7 +11,41 @@
 Command InputHandler::stringToCommand(const std::string& command) {
 //     Здесь вы можете реализовать преобразование строки в команду
 //     Например, если command == "START", то возвращаем Command::START
-    return Command::START;
+//    switch (command) {
+//        case "QUIT":
+//            return Command::QUIT;
+//        case "MOVE_UP":
+//            return Command::MOVE_UP;
+//        case "MOVE_LEFT":
+//            return Command::MOVE_LEFT;
+//        case "MOVE_DOWN":
+//            return Command::MOVE_DOWN;
+//        case "MOVE_RIGHT":
+//            return Command::MOVE_RIGHT;
+//        case "RESTART":
+//            return Command::RESTART;
+//        case "PLAY_LVL_1":
+//            return Command::PLAY_LVL_1;
+//    }
+    if (command == "QUIT")
+            return Command::QUIT;
+    if (command == "MOVE_UP")
+            return Command::MOVE_UP;
+    if (command == "MOVE_LEFT")
+            return Command::MOVE_LEFT;
+    if (command == "MOVE_DOWN")
+            return Command::MOVE_DOWN;
+    if (command == "MOVE_RIGHT")
+            return Command::MOVE_RIGHT;
+    if (command == "RESTART")
+            return Command::RESTART;
+    if (command == "PLAY_LVL_1")
+            return Command::PLAY_LVL_1;
+    if (command == "PLAY_LVL_2")
+        return Command::PLAY_LVL_2;
+    if (command == "NOTHING")
+            return Command::NOTHING;
+    return Command::NOTHING;
 }
 
 //public:
@@ -41,7 +75,8 @@ InputHandler::~InputHandler() {
 Command InputHandler::handleInput(const std::string& input) {
     auto it = commandMap.find(input);
     if (it == commandMap.end()) {
-        throw std::runtime_error("Invalid command");
+//        throw std::runtime_error("Invalid command");
+        return Command::NOTHING;
     }
     return it->second;
 }

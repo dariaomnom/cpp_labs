@@ -4,6 +4,7 @@
 #include "GameField.hpp"
 #include "GameFieldCreator.hpp"
 #include "InputHandler.hpp"
+#include "lib/termcolor.hpp"
 #include <iostream>
 using namespace std;
 #include <ncurses.h>
@@ -40,11 +41,11 @@ public:
 //    Game();
 
     bool playLevel1();
-//    bool playLevel2();
+    bool playLevel2();
 
     void startGame();
-    void playGame(PlayerController& controller);
-//    void quit();
+    void playGame(int lvl);
+    void quit();
     void setDifficulty(int level);
 //    void movePlayer(Direction direction);
     bool checkWin(GameField& field, PlayerController& controller);

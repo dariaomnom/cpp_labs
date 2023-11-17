@@ -9,12 +9,6 @@ Game::Game() {
 
 void Game::handleCommand(PlayerController& controller, Command command) {
     switch(command) {
-        case Command::START:
-            startGame();
-            break;
-        case Command::QUIT:
-//            quit();
-            break;
         case Command::MOVE_UP:
             controller.move(Direction::UP);
             break;
@@ -27,53 +21,89 @@ void Game::handleCommand(PlayerController& controller, Command command) {
         case Command::MOVE_RIGHT:
             controller.move(Direction::RIGHT);
             break;
-        case Command::SET_DIFFICULTY:
-//            this->level =
-            break;
-        case Command::CHECK_WIN:
-            break;
-        case Command::CHECK_LOSS:
-            break;
         case Command::RESTART:
+            startGame();
             break;
-            // и так далее для остальных команд
+        case Command::PLAY_LVL_1:
+//            playLevel1();
+            break;
+        case Command::PLAY_LVL_2:
+            break;
+        case Command::QUIT:
+            quit();
+            break;
+        case Command::NOTHING:
+            break;
     }
 }
 
 void Game::startGame() {
 
-    char lvl = '1';
-//    cin >> lvl;
-    level = lvl;
-    if (lvl == '1') {
-        playLevel1();
+    InputHandler inputHandler("commandMap.txt");
+
+    while (true) {
+        clear();
+        std::string level_message = "Select difficulty level (1 or 2)";
+        printw("%s", level_message.c_str());
+        refresh();
+        int ch = getch();
+        std::string input(1, ch);
+        Command command = inputHandler.handleInput(input);
+//        handleCommand(controller, command);
+        if (command == Command::PLAY_LVL_1) {
+            this->level = 1;
+//            playLevel1();
+            playGame(1);
+            break;
+        }
+        if (command == Command::PLAY_LVL_2) {
+            this->level = 2;
+//            playLevel2();
+            playGame(2);
+            break;
+        }
     }
+
+//    char lvl = '1';
+////    cin >> lvl;
+//    level = lvl;
+//    if (lvl == '1') {
+//        playLevel1();
+//    }
 //    else if (lvl == '2') {
 //        playLevel2();
 //    }
 
 }
 
-void Game::playGame(PlayerController& controller) {
+void Game::playGame(int lvl) {
+    Player player;
+    GameField field(50, 50);
+    PlayerController controller(player,field);
+    GameFieldCreator creator(field, player, controller);
+    if (lvl == 1)
+        creator.createField(1);
+    else if (lvl == 2)
+        creator.createField(2);
+
+
     InputHandler inputHandler("commandMap.txt");
 
-    addstr("Game has started");
+    clear();
+    std::string start_message = "Press any key to start the game";
+    printw("%s", start_message.c_str());
+    refresh();
+    int ch = getch();
 
-    // Запускаем цикл игры
+
+
     while (true) {
-        // Считываем символ, введенный пользователем
+        controller.drawGameField();
         int ch = getch();
-
-        // Преобразуем символ в строку
         std::string input(1, ch);
-
-        // Получаем команду, соответствующую введенному символу
         Command command = inputHandler.handleInput(input);
-
-        // Обрабатываем команду
         handleCommand(controller, command);
 
-        // Если была введена команда QUIT, выходим из цикла
         if (command == Command::QUIT) {
             break;
         }
@@ -85,12 +115,22 @@ void Game::setDifficulty(int lvl) {
 }
 
 bool Game::playLevel1() {
-    Player player;
-    GameField field(10, 10);
-    PlayerController controller(player,field);
-    GameFieldCreator creator(field, player, controller);
-    creator.createField(1);
-    playGame(controller);
+//    Player player;
+//    GameField field(50, 50);
+//    PlayerController controller(player,field);
+//    GameFieldCreator creator(field, player, controller);
+//    creator.createField(1);
+    playGame(1);
+//    controller.startGame();
+    return true;
+}
+bool Game::playLevel2() {
+//    Player player;
+//    GameField field(50, 50);
+//    PlayerController controller(player,field);
+//    GameFieldCreator creator(field, player, controller);
+//    creator.createField(1);
+    playGame(1);
 //    controller.startGame();
     return true;
 }
@@ -103,13 +143,20 @@ bool Game::playLevel1() {
 //    // Здесь вы можете инициализировать игру, например, установить начальный уровень сложности
 //}
 
-//void Game::start() {
-//    // Здесь вы можете начать игру, например, отобразить игровое поле и начать цикл игры
-//}
-
-//void Game::quit() {
-//    // Здесь вы можете завершить игру, например, сохранить прогресс и выйти из программы
-//}
+void Game::quit() {
+    // Здесь вы можете завершить игру, например, сохранить прогресс и выйти из программы
+//    clear();
+//    std::string quit_message = "You are out of the game!";
+//    printw("%s", quit_message.c_str());
+//    mvprintw(10, 10, "%s", quit_message.c_str());
+//    printw("\n");
+//    refresh();
+    clear();
+    endwin();
+//    cout << "You are out of the game!\n";
+    cout << termcolor::red << "You are out of the game!\n" << termcolor::reset;
+    exit(0);
+}
 
 //void Game::movePlayer(Direction direction) {
 //    // Здесь вы можете переместить игрока в указанном направлении
