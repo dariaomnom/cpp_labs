@@ -2,9 +2,9 @@
 #define LABS_FIELDEVENT_HPP
 
 #include "GameEvent.hpp"
-#include "Player.hpp"
-#include "PlayerController.hpp"
-#include "GameField.hpp"
+#include "../Player.hpp"
+#include "../PlayerController.hpp"
+#include "../GameField.hpp"
 
 class FieldEvent : public GameEvent{
 protected:

@@ -2,7 +2,7 @@
 #define GAMEEVENT_HPP
 
 #include "GameEvent.hpp"
-#include "Player.hpp"
+#include "../Player.hpp"
 
 class PlayerEvent : public GameEvent {
 protected:
