@@ -86,8 +86,14 @@ void Game::playGame(int lvl) {
     else if (lvl == 2)
         creator.createField(2);
 
-    InputHandler inputHandler("commandMap.txt");
 
+    Drawer drawer = Drawer(field, controller);
+    PlayerWarden playerWarden = PlayerWarden(controller);
+    CordsWarden cordsWarden = CordsWarden(controller);
+    Observer observer = Observer(playerWatcher, coordsWatcher, viewer);
+
+
+    InputHandler inputHandler("commandMap.txt");
     clear();
     init_pair(4, COLOR_CYAN, COLOR_BLACK);
     attron(COLOR_PAIR(4));

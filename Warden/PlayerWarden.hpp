@@ -1,24 +1,18 @@
-
+#include "Warden.hpp"
+#include "../Player.hpp"
 
 #ifndef PLAYERWARDEN_HPP
 #define PLAYERWARDEN_HPP
 
-
-#include "Warden.hpp"
-#include "../PlayerController.hpp"
-
 class PlayerWarden : public Warden{
 private:
-    Controller& controller;
-    int prevHP;
-    int prevMasculinity;
+    Player& player;
+    int oldLives;
+    int oldPoints;
+    int oldLevel;
 public:
-    MonitorPlayerStats(Controller& controller);
-    bool update() override;
+    explicit PlayerWarden(Player& player);
+    bool updateInfo() override;
 };
 
 #endif
-
-
-
-#endif //LABS_PLAYERWARDEN_HPP

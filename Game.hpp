@@ -4,6 +4,9 @@
 #include "GameField.hpp"
 #include "GameFieldCreator.hpp"
 #include "InputHandler.hpp"
+#include "Observer.hpp"
+
+
 #include "lib/termcolor.hpp"
 #include <iostream>
 using namespace std;

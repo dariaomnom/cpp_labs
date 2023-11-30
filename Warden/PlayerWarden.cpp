@@ -1,20 +1,17 @@
-#ifndef MONITORHP_CPP
-#define MONITORHP_CPP
+#include "PlayerWarden.hpp"
 
-#include "MonitorPlayerStats.h"
-
-MonitorPlayerStats::MonitorPlayerStats(Controller &controller) : controller(controller) {
-    prevHP = controller.getPlayerHP();
-    prevMasculinity = controller.getPlayerMasculinity();
+PlayerWarden::PlayerWarden(Player& player) : player(player) {
+    oldLives = player.getLives();
+    oldPoints = player.getPoints();
+    oldLevel = player.getLevel();
 }
 
-bool MonitorPlayerStats::update() {
-    if (controller.getPlayerHP() != prevHP || controller.getPlayerMasculinity() != prevMasculinity) {
-        prevHP = controller.getPlayerHP();
-        prevMasculinity = controller.getPlayerMasculinity();
+bool PlayerWarden::updateInfo() {
+    if (player.getLives() != oldLives || player.getPoints() != oldPoints || player.getLevel() != oldLevel) {
+        oldLives = player.getLives();
+        oldPoints = player.getPoints();
+        oldLevel = player.getLevel();
         return true;
     }
     return false;
 }
-
-#endif
