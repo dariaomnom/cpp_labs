@@ -28,6 +28,7 @@ Command InputHandler::stringToCommand(const std::string& command) {
 
 InputHandler::InputHandler(const std::string& filename) : file(filename) {
     if (!file) {
+        endwin();
         throw std::runtime_error("Could not open file");
     }
 

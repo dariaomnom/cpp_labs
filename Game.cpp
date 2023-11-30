@@ -58,6 +58,7 @@ void Game::startGame() {
         int ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
+
         if (command == Command::PLAY_LVL_1) {
             this->level = 1;
             playGame(1);
@@ -73,9 +74,9 @@ void Game::startGame() {
 }
 
 void Game::playGame(int lvl) {
-    Player player(3);
+    Player player;
     std::array<int, 2> size_level;
-    lvl == 1 ? size_level = {10, 10} : size_level = {30, 30};
+    lvl == 1 ? size_level = {FIELD_W_1, FIELD_H_1} : size_level = {FIELD_W_2, FIELD_H_2};
 
     GameField field(size_level[0], size_level[1]);
     PlayerController controller(player,field);
