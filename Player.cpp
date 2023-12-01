@@ -72,6 +72,6 @@ void Player::printStats() {
     attron(COLOR_PAIR(8));
     printw("\n   STATS\n   Lives: %d\n   Points: %d\n   Level: %d\n", getLives(), getPoints(), getLevel());
     attroff(COLOR_PAIR(8));
-    refresh();
+//    refresh();
 
 }

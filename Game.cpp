@@ -27,19 +27,24 @@ void Game::handleCommand(Player& player, PlayerController& controller, Command c
             startGame();
             break;
         case Command::PLAY_LVL_1:
+//            controller.drawGameField();
             break;
         case Command::PLAY_LVL_2:
+//            controller.drawGameField();
             break;
         case Command::STATS:
             player.printStats();
             printw("%s", stats_message.c_str());
             stat_char = getch();
+            controller.drawGameField();
+            refresh();
             endwin();
             break;
         case Command::QUIT:
             quit();
             break;
         case Command::NOTHING:
+            controller.drawGameField();
             break;
     }
 }
@@ -87,10 +92,12 @@ void Game::playGame(int lvl) {
         creator.createField(2);
 
 
-    Drawer drawer = Drawer(field, controller);
-    PlayerWarden playerWarden = PlayerWarden(controller);
+    Drawer drawer = Drawer(controller, field, player);
+    GameStateWarden gameStateWarden = GameStateWarden(controller, field, player);
+    PlayerWarden playerWarden = PlayerWarden(player);
     CordsWarden cordsWarden = CordsWarden(controller);
-    Observer observer = Observer(playerWatcher, coordsWatcher, viewer);
+    EventsWarden eventsWarden = EventsWarden(controller, field);
+    Observer observer = Observer(gameStateWarden, playerWarden, cordsWarden, eventsWarden, drawer);
 
 
     InputHandler inputHandler("commandMap.txt");
@@ -103,14 +110,19 @@ void Game::playGame(int lvl) {
     refresh();
     int ch = getch();
 
+    controller.drawGameField();
+
 
     while (true) {
-        if (ch != 112)
-            controller.drawGameField();
+        observer.overWatch();
+//        if (ch != 112)
+//            controller.drawGameField();
         ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
         handleCommand(player, controller, command);
+
+//        observer.overWatch();
 
         if (checkWin(field, controller)) {
             clear();
@@ -155,15 +167,6 @@ void Game::playGame(int lvl) {
 void Game::setDifficulty(int lvl) {
     level = lvl;
 }
-
-//bool Game::playLevel1() {
-//    playGame(1);
-//    return true;
-//}
-//bool Game::playLevel2() {
-//    playGame(2);
-//    return true;
-//}
 
 void Game::quit() {
     clear();

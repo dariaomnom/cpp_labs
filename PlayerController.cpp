@@ -1,10 +1,10 @@
 #include "PlayerController.hpp"
 using namespace std;
 #include "lib/termcolor.hpp"
-#include "PointsEvent.hpp"
-#include "LivesEvent.hpp"
-#include "EnemyEvent.hpp"
-#include "PositionEvent.hpp"
+#include "Events/PointsEvent.hpp"
+#include "Events/LivesEvent.hpp"
+#include "Events/EnemyEvent.hpp"
+#include "Events/PositionEvent.hpp"
 #include <ncurses.h>
 #define REGION_AROUND_PLAYER 9
 

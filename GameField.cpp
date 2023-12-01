@@ -1,6 +1,6 @@
 #include "Cell.hpp"
 #include "GameField.hpp"
-#include "PlayerEvent.hpp"
+#include "Events/PlayerEvent.hpp"
 
 using namespace std;
 #define MAX_SIZE 101
@@ -18,7 +18,8 @@ GameField::GameField(int width, int height, pair<int,int> entry, pair<int,int> e
     for(int i = 0; i < height; ++i)
         cells[i] = new Cell[width];
 
-    if (entry.first >= 0 && entry.first < width && exit.first >= 0 && exit.first < height) {
+    if (entry.first >= 0 && entry.first < width && exit.first >= 0 && exit.first < width
+    && entry.second >= 0 && entry.second < height && exit.second >= 0 && exit.second < height) {
         this->entry = entry;
         this->exit = exit;
     } else {

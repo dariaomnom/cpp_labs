@@ -2,7 +2,7 @@
 #include "PlayerController.hpp"
 #include "Cell.hpp"
 #include "GameField.hpp"
-#include "PlayerEvent.hpp"
+//#include "Events/PlayerEvent.hpp"
 #include "GameFieldCreator.hpp"
 #include "Game.hpp"
 #include <ncurses.h>

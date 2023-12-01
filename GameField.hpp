@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "Cell.hpp"
-#include "PlayerEvent.hpp"
+#include "Events/PlayerEvent.hpp"
 
 #ifndef GAMEFIELD_HPP
 #define GAMEFIELD_HPP

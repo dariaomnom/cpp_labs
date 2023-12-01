@@ -4,7 +4,7 @@
 #ifndef PLAYERWARDEN_HPP
 #define PLAYERWARDEN_HPP
 
-class PlayerWarden : public Warden{
+class PlayerWarden : public Warden {
 private:
     Player& player;
     int oldLives;

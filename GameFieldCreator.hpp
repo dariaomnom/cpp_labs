@@ -1,10 +1,10 @@
 #include "Player.hpp"
 #include "PlayerController.hpp"
 #include "GameField.hpp"
-#include "EnemyEvent.hpp"
-#include "PointsEvent.hpp"
-#include "LivesEvent.hpp"
-#include "PositionEvent.hpp"
+#include "Events/EnemyEvent.hpp"
+#include "Events/PointsEvent.hpp"
+#include "Events/LivesEvent.hpp"
+#include "Events/PositionEvent.hpp"
 
 #ifndef GAMEFIELDCREATOR_HPP
 #define GAMEFIELDCREATOR_HPP

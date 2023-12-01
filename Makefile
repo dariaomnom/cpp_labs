@@ -1,2 +1,2 @@
 all:
-	g++ --std=c++17 main.cpp Player.cpp PlayerController.cpp Cell.cpp GameField.cpp GameFieldCreator.cpp PlayerEvent.cpp FieldEvent.cpp EnemyEvent.cpp PointsEvent.cpp LivesEvent.cpp PositionEvent.cpp Game.cpp InputHandler.cpp -o game -lncurses
+	g++ --std=c++17 main.cpp Player.cpp PlayerController.cpp Cell.cpp GameField.cpp GameFieldCreator.cpp Events/PlayerEvent.cpp Events/FieldEvent.cpp Events/EnemyEvent.cpp Events/PointsEvent.cpp Events/LivesEvent.cpp Events/PositionEvent.cpp Game.cpp InputHandler.cpp Observer.cpp Warden/PlayerWarden.cpp Warden/CordsWarden.cpp Warden/GameStateWarden.cpp Warden/EventsWarden.cpp Drawer.cpp -o game -lncurses

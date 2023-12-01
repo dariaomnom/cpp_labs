@@ -1,7 +1,7 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
-#include "GameEvent.hpp"
+#include "Events/GameEvent.hpp"
 
 class GameField;
 class Cell {

@@ -6,7 +6,7 @@
 
 class CordsWarden : public Warden {
 private:
-    Controller& controller;
+    PlayerController& controller;
     int oldX;
     int oldY;
 public:

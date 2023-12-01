@@ -1,6 +1,6 @@
 #include "Player.hpp"
 #include "GameField.hpp"
-#include "PlayerEvent.hpp"
+#include "Events/PlayerEvent.hpp"
 
 
 #ifndef CONTROLLER_H
