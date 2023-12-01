@@ -55,6 +55,10 @@ InputHandler::InputHandler(const std::string& filename) : file(filename) {
         commandMap[key] = stringToCommand(command);
         commandSet.insert(command);
     }
+    if (commandSet.size() < 9) {
+        endwin();
+        throw std::runtime_error("Error: not all commands found");
+    }
 }
 
 InputHandler::~InputHandler() {

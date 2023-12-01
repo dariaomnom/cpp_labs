@@ -1,8 +1,5 @@
 #include "Observer.hpp"
 
-//Observer::Observer(MonitorPlayerStats& monPlStats, MonitorCoordinates& monCoords, FieldShow& viewer) :
-//        monPlStats(monPlStats), monCoords(monCoords), viewer(viewer) {}
-
 Observer::Observer(GameStateWarden& gameStateWarden, PlayerWarden& playerWarden,
         CordsWarden& cordsWarden, EventsWarden& eventsWarden, Drawer& drawer) :
             gameStateWarden(gameStateWarden),
@@ -22,7 +19,7 @@ void Observer::overWatch() {
     if (cords || events){
         drawer.drawField();
     } else {
-        drawer.drawField();
+//        drawer.drawField();
     }
 }
 
@@ -34,8 +31,14 @@ void Observer::overWatchPlayer() {
     playerWarden.updateInfo();
 }
 void Observer::overWatchCords() {
-    cordsWarden.updateInfo();
+    bool cords = cordsWarden.updateInfo();
+    if (cords) {
+        drawer.drawField();
+    }
 }
 void Observer::overWatchEvents() {
-    eventsWarden.updateInfo();
+    bool events = eventsWarden.updateInfo();
+    if (events) {
+        drawer.drawField();
+    }
 }

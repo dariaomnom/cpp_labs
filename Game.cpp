@@ -7,7 +7,7 @@
 
 Game::Game() {}
 
-void Game::handleCommand(Player& player, PlayerController& controller, Command command) {
+void Game::handleCommand(Player& player, PlayerController& controller, Command command, Drawer& drawer) {
     int stat_char;
     std::string stats_message = "\n   Press any key to continue\n";
     switch(command) {
@@ -27,13 +27,12 @@ void Game::handleCommand(Player& player, PlayerController& controller, Command c
             startGame();
             break;
         case Command::PLAY_LVL_1:
-//            controller.drawGameField();
             break;
         case Command::PLAY_LVL_2:
-//            controller.drawGameField();
             break;
         case Command::STATS:
-            player.printStats();
+//            player.printStats();
+            drawer.showStats();
             printw("%s", stats_message.c_str());
             stat_char = getch();
             controller.drawGameField();
@@ -120,9 +119,7 @@ void Game::playGame(int lvl) {
         ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
-        handleCommand(player, controller, command);
-
-//        observer.overWatch();
+        handleCommand(player, controller, command, drawer);
 
         if (checkWin(field, controller)) {
             clear();
