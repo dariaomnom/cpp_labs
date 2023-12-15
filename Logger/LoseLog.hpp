@@ -5,12 +5,12 @@
 #define LABS_LOSELOG_HPP
 
 class LoseLog: public LogLine {
-public:
-    LoseLog(PlayerController& controller);
-    void print(std::ostream& out) const override;
 private:
     PlayerController& controller;
     int X, Y;
+public:
+    LoseLog(PlayerController& controller);
+    void print(std::ostream& out) const override;
 };
 
 #endif //LABS_LOSELOG_HPP

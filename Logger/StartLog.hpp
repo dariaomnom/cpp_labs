@@ -6,12 +6,12 @@
 #define LABS_STARTLOG_HPP
 
 class StartLog: public LogLine {
-public:
-    StartLog(GameField& field);
-    void print(std::ostream& out) const override;
 private:
     GameField& field;
     int startX, startY, width, height;
+public:
+    StartLog(GameField& field);
+    void print(std::ostream& out) const override;
 };
 
 #endif //LABS_STARTLOG_HPP

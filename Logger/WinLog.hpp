@@ -5,12 +5,12 @@
 #define LABS_WINLOG_HPP
 
 class WinLog: public LogLine {
-public:
-    WinLog(Player& player);
-    void print(std::ostream& out) const override;
 private:
     Player& player;
     int lives, points, level;
+public:
+    WinLog(Player& player);
+    void print(std::ostream& out) const override;
 };
 
 #endif //LABS_WINLOG_HPP
