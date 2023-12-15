@@ -16,11 +16,12 @@ using namespace std;
 
 
 int main() {
-    initscr();
-    start_color();
+//    initscr();
+//    start_color();
 
     Game game;
-    game.startGame();
+    game.selectLogAndStart();
+//    game.startGame();
 
     endwin();
     return 0;
