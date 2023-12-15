@@ -1,17 +1,14 @@
 #include "Logger.h"
 
-Logger::Logger(std::ostream& os) : m_os(os) {}
+Logger::Logger(std::ostream& out_line) : out_line(out_line) {}
 
-
-void Logger::addLog(const LogLine& msg) {
-    m_messages.push_back(&msg);
+void Logger::addLog(const LogLine& line) {
+    lines.push_back(&line);
 }
 
 void Logger::writeLogs() {
-    for (const auto& msg : m_messages) {
-//        m_os << *msg << '\n';
-        m_os << *msg;
-//        delete msg;
+    for (const auto& line : lines) {
+        out_line << *line;
     }
-    m_messages.clear();
+    lines.clear();
 }

@@ -6,13 +6,13 @@
 #define LABS_LOGGER_H
 
 class Logger {
+private:
+    std::vector<const LogLine*> lines;
+    std::ostream& out_line;
 public:
     Logger(std::ostream& os);
     void addLog(const LogLine& msg);
     void writeLogs();
-private:
-    std::vector<const LogLine*> m_messages;
-    std::ostream& m_os;
 };
 
 #endif //LABS_LOGGER_H
