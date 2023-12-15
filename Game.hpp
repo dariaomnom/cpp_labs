@@ -10,6 +10,7 @@
 #include "Logger/WinLog.hpp"
 #include "Logger/StartLog.hpp"
 
+#include <fstream>
 
 #include "lib/termcolor.hpp"
 #include <iostream>

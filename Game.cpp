@@ -10,45 +10,17 @@ Game::Game() {
 }
 
 void Game::selectLogAndStart() {
-//    init_pair(10, COLOR_GREEN, COLOR_BLACK);
-//    attron(COLOR_PAIR(10));
-//    std::string start_message = "\n   Select a location to write logs to. 1 - to the console, 2 - to a file, 3 - to the console and to a file, 0 - nowhere\n";
-//    printw("%s", start_message.c_str());
-//    attroff(COLOR_PAIR(10));
-//    int select = getch();
-
-//    int select = 10;
-//    while (select == 10) {
-//        clear();
-////        init_pair(5, COLOR_CYAN, COLOR_BLACK);
-////        attron(COLOR_PAIR(5));
-//        std::string start_message = "\n   Select a location to write logs to. 1 - to the console, 2 - to a file, 3 - to the console and to a file, 0 - nowhere\n";
-//        printw("%s", start_message.c_str());
-////        attroff(COLOR_PAIR(5));
-//        refresh();
-//        select = getch();
-//
-//        if (select == 1) selectedLog = 1;
-//        else if (select == 2) selectedLog = 2;
-//        else if (select == 3) selectedLog = 3;
-//        else if (select == 0) selectedLog = 0;
-//    }
-
-//    if (select == 1) selectedLog = 1;
-//    else if (select == 2) selectedLog = 2;
-//    else if (select == 3) selectedLog = 3;
-//    else if (select == 0) selectedLog = 0;
-
     char select;
-
     std::cout << "Select a location to write logs to. 1 - to the console, 2 - to a file, 3 - to the console and to a file, 0 - nowhere\n";
     select = getchar();
 
-    if (select == 1) selectedLog = 1;
-    else if (select == 2) selectedLog = 2;
-    else if (select == 3) selectedLog = 3;
-    else if (select == 0) selectedLog = 0;
+    if (select == '1') selectedLog = 1;
+    else if (select == '2') selectedLog = 2;
+    else if (select == '3') selectedLog = 3;
+    else if (select == '0') selectedLog = 0;
 
+//    std::fstream file1("logs.txt", std::ios::out | std::ios::trunc);
+//    file1.close();
 //    std::ofstream file;
     file.open("logs.txt");
     if (!file.is_open()) {
@@ -56,7 +28,6 @@ void Game::selectLogAndStart() {
     }
     fileLogger = new Logger(file);
     consoleLogger = new Logger(std::cout);
-//    endwin();
     initscr();
     start_color();
     startGame();
@@ -254,17 +225,36 @@ void Game::quit() {
 //        clear();
 //        refresh();
         endwin();
-//        std::cout << "Some logs\n";
-        if (selectedLog == 1) {
-            consoleLogger->writeLogs();
-        } else if (selectedLog == 2) {
-            fileLogger->writeLogs();
-            file.close();
-        } else if (selectedLog == 3) {
-            consoleLogger->writeLogs();
-            fileLogger->writeLogs();
-            file.close();
+        switch (selectedLog) {
+            case 0:
+                file.close();
+                break;
+            case 1:
+                file.close();
+                consoleLogger->writeLogs();
+                break;
+            case 2:
+                fileLogger->writeLogs();
+                file.close();
+                break;
+            case 3:
+                consoleLogger->writeLogs();
+                fileLogger->writeLogs();
+                file.close();
+                break;
         }
+
+//        std::cout << "Some logs\n";
+//        if (selectedLog == 1) {
+//            consoleLogger->writeLogs();
+//        } else if (selectedLog == 2) {
+////            fileLogger->writeLogs();
+//            file.close();
+//        } else if (selectedLog == 3) {
+//            consoleLogger->writeLogs();
+////            fileLogger->writeLogs();
+//            file.close();
+//        }
 //        consoleLogger->writeLogs();
 //        fileLogger->writeLogs();
 //        file.close();
