@@ -10,6 +10,7 @@ public:
     void print(std::ostream& out) const override;
 private:
     Player& player;
+    int lives, points, level;
 };
 
 #endif //LABS_WINLOG_HPP

@@ -1,15 +1,16 @@
 #include "LogLine.hpp"
-#include "../Player.hpp"
+#include "../PlayerController.hpp"
 
-#ifndef LABS_PLAYERWONLOG_HPP
-#define LABS_PLAYERWONLOG_HPP
+#ifndef LABS_LOSELOG_HPP
+#define LABS_LOSELOG_HPP
 
-class PlayerWonLog: public LogLine {
+class LoseLog: public LogLine {
 public:
-    PlayerWonLog(Player& player);
+    LoseLog(PlayerController& controller);
     void print(std::ostream& out) const override;
 private:
-    Player& player;
+    PlayerController& controller;
+    int X, Y;
 };
 
-#endif //LABS_PLAYERWONLOG_HPP
+#endif //LABS_LOSELOG_HPP

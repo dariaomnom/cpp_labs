@@ -1,7 +1,10 @@
-#include "PlayerWonLog.hpp"
+#include "LoseLog.hpp"
 
-PlayerWonLog::PlayerWonLog(Player& player) : player(player) {}
+LoseLog::LoseLog(PlayerController& controller) : controller(controller) {
+    X = controller.getX();
+    Y = controller.getY();
+}
 
-void PlayerWonLog::print(std::ostream& out) const {
-    out << "Player won" << std::endl;
+void LoseLog::print(std::ostream& out) const {
+    out << "Player lost on (" << X << "," << Y << ")." << std::endl;
 }

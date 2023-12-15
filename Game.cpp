@@ -5,9 +5,7 @@
 #define FIELD_H_2 30
 
 
-Game::Game() {
-//    std::ofstream file;
-}
+Game::Game() {}
 
 void Game::selectLogAndStart() {
     char select;
@@ -19,9 +17,6 @@ void Game::selectLogAndStart() {
     else if (select == '3') selectedLog = 3;
     else if (select == '0') selectedLog = 0;
 
-//    std::fstream file1("logs.txt", std::ios::out | std::ios::trunc);
-//    file1.close();
-//    std::ofstream file;
     file.open("logs.txt");
     if (!file.is_open()) {
         std::cout << "File error";
@@ -33,30 +28,56 @@ void Game::selectLogAndStart() {
     startGame();
 }
 
-void Game::handleCommand(Player& player, PlayerController& controller, Command command, Drawer& drawer) {
+void Game::handleCommand(Player& player, PlayerController& controller, Command command, char char_symbol, Drawer& drawer) {
     int stat_char;
+    LogLine* commandLine;
+    LogLine* nothingLine;
     std::string stats_message = "\n   Press any key to continue\n";
     switch(command) {
         case Command::MOVE_UP:
             controller.move(Direction::UP);
+            commandLine = new CommandLog(char_symbol, "MOVE_UP");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::MOVE_LEFT:
             controller.move(Direction::LEFT);
+            commandLine = new CommandLog(char_symbol, "MOVE_LEFT");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::MOVE_DOWN:
             controller.move(Direction::DOWN);
+            commandLine = new CommandLog(char_symbol, "MOVE_DOWN");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::MOVE_RIGHT:
             controller.move(Direction::RIGHT);
+            commandLine = new CommandLog(char_symbol, "MOVE_RIGHT");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::RESTART:
+            commandLine = new CommandLog(char_symbol, "RESTART");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             startGame();
             break;
         case Command::PLAY_LVL_1:
+            commandLine = new CommandLog(char_symbol, "PLAY_LVL_1");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::PLAY_LVL_2:
+            commandLine = new CommandLog(char_symbol, "PLAY_LVL_2");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             break;
         case Command::STATS:
+            commandLine = new CommandLog(char_symbol, "STATS");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
 //            player.printStats();
             drawer.showStats();
             printw("%s", stats_message.c_str());
@@ -66,9 +87,15 @@ void Game::handleCommand(Player& player, PlayerController& controller, Command c
             endwin();
             break;
         case Command::QUIT:
+            commandLine = new CommandLog(char_symbol, "QUIT");
+            fileLogger->addLog(*commandLine);
+            consoleLogger->addLog(*commandLine);
             quit();
             break;
         case Command::NOTHING:
+            nothingLine = new NothingLog(char_symbol);
+            fileLogger->addLog(*nothingLine);
+            consoleLogger->addLog(*nothingLine);
             controller.drawGameField();
             break;
     }
@@ -124,15 +151,8 @@ void Game::playGame(int lvl) {
     EventsWarden eventsWarden = EventsWarden(controller, field);
     Observer observer = Observer(gameStateWarden, playerWarden, cordsWarden, eventsWarden, drawer);
 
-//    std::ofstream file;
-//    file.open("logs.txt");
-//    if (!file.is_open()) {
-//        std::cout << "File error";
-//    }
-//    fileLogger = new Logger(file);
-//    consoleLogger = new Logger(std::cout);
 
-    LogLine* startLine = new StartLog(controller, field);
+    LogLine* startLine = new StartLog(field);
     fileLogger->addLog(*startLine);
     consoleLogger->addLog(*startLine);
 
@@ -157,7 +177,8 @@ void Game::playGame(int lvl) {
         ch = getch();
         std::string input(1, ch);
         Command command = inputHandler.handleInput(input);
-        handleCommand(player, controller, command, drawer);
+        char char_symbol = static_cast<char>(ch);
+        handleCommand(player, controller, command, char_symbol, drawer);
 
         if (checkWin(field, controller)) {
 
@@ -183,6 +204,11 @@ void Game::playGame(int lvl) {
         }
 
         if (checkLoss(player)) {
+
+            LogLine* loseLine = new LoseLog(controller);
+            fileLogger->addLog(*loseLine);
+            consoleLogger->addLog(*loseLine);
+
             clear();
             endwin();
             player.printStats();
@@ -222,8 +248,6 @@ void Game::quit() {
     endwin();
     if (ch == 113) // q
     {
-//        clear();
-//        refresh();
         endwin();
         switch (selectedLog) {
             case 0:
@@ -244,20 +268,6 @@ void Game::quit() {
                 break;
         }
 
-//        std::cout << "Some logs\n";
-//        if (selectedLog == 1) {
-//            consoleLogger->writeLogs();
-//        } else if (selectedLog == 2) {
-////            fileLogger->writeLogs();
-//            file.close();
-//        } else if (selectedLog == 3) {
-//            consoleLogger->writeLogs();
-////            fileLogger->writeLogs();
-//            file.close();
-//        }
-//        consoleLogger->writeLogs();
-//        fileLogger->writeLogs();
-//        file.close();
         exit(0);
     }
     else

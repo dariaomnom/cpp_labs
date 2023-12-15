@@ -1,7 +1,7 @@
-#include "PlayerWonLog.hpp"
+#include "NothingLog.hpp"
 
-PlayerWonLog::PlayerWonLog(Player& player) : player(player) {}
+NothingLog::NothingLog(char key) : key (key) {}
 
-void/*std::ostream&*/ PlayerWonLog::print(std::ostream& out) const {
-    out << "Player won" << std::endl;
+void NothingLog::print(std::ostream& out) const {
+    out << "The \"" << key << "\" key is pressed. No command worked." << std::endl;
 }

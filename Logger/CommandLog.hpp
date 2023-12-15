@@ -1,15 +1,15 @@
 #include "LogLine.hpp"
-#include "../Player.hpp"
 
-#ifndef LABS_PLAYERWONLOG_HPP
-#define LABS_PLAYERWONLOG_HPP
+#ifndef LABS_COMMANDLOG_HPP
+#define LABS_COMMANDLOG_HPP
 
-class PlayerWonLog: public LogLine {
+class CommandLog: public LogLine {
 public:
-    PlayerWonLog(Player& player);
+    CommandLog(char key, std::string command);
     void print(std::ostream& out) const override;
 private:
-    Player& player;
+    char key;
+    std::string command;
 };
 
-#endif //LABS_PLAYERWONLOG_HPP
+#endif //LABS_COMMANDLOG_HPP

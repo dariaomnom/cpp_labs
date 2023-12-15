@@ -1,7 +1,7 @@
-#include "PlayerWonLog.hpp"
+#include "CommandLog.hpp"
 
-PlayerWonLog::PlayerWonLog(Player& player) : player(player) {}
+CommandLog::CommandLog(char key, std::string command) : key (key), command(command) {}
 
-void/*std::ostream&*/ PlayerWonLog::print(std::ostream& out) const {
-    out << "Player won" << std::endl;
+void CommandLog::print(std::ostream& out) const {
+    out << "The \"" << key << "\" key was pressed. The command \"" << command << "\" worked" << std::endl;
 }

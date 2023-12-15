@@ -7,11 +7,11 @@
 
 class StartLog: public LogLine {
 public:
-    StartLog(PlayerController& controller, GameField& field);
+    StartLog(GameField& field);
     void print(std::ostream& out) const override;
 private:
-    PlayerController& controller;
     GameField& field;
+    int startX, startY, width, height;
 };
 
 #endif //LABS_STARTLOG_HPP

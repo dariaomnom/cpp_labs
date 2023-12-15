@@ -1,15 +1,14 @@
 #include "LogLine.hpp"
-#include "../Player.hpp"
 
-#ifndef LABS_PLAYERWONLOG_HPP
-#define LABS_PLAYERWONLOG_HPP
+#ifndef LABS_NOTHINGLOG_HPP
+#define LABS_NOTHINGLOG_HPP
 
-class PlayerWonLog: public LogLine {
+class NothingLog: public LogLine {
 public:
-    PlayerWonLog(Player& player);
+    NothingLog(char key);
     void print(std::ostream& out) const override;
 private:
-    Player& player;
+    char key;
 };
 
-#endif //LABS_PLAYERWONLOG_HPP
+#endif //LABS_NOTHINGLOG_HPP

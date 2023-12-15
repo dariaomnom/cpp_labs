@@ -7,8 +7,11 @@
 #include "Observer.hpp"
 #include "Logger/LogLine.hpp"
 #include "Logger/Logger.h"
-#include "Logger/WinLog.hpp"
 #include "Logger/StartLog.hpp"
+#include "Logger/WinLog.hpp"
+#include "Logger/LoseLog.hpp"
+#include "Logger/CommandLog.hpp"
+#include "Logger/NothingLog.hpp"
 
 #include <fstream>
 
@@ -39,7 +42,7 @@ public:
     bool checkWin(GameField& field, PlayerController& controller);
     bool checkLoss(Player& player);
     void restart();
-    void handleCommand(Player& player, PlayerController& controller, Command command, Drawer& drawer);
+    void handleCommand(Player& player, PlayerController& controller, Command command, char char_symbol, Drawer& drawer);
 };
 
 #endif
